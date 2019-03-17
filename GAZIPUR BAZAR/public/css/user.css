@@ -325,3 +325,4 @@ a:hover{
 .resetpass{
 	margin-top: 150px;
 }
+.dropdown:hover .dropdown-menu {display: block;}

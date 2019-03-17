@@ -48,16 +48,18 @@
 		    		<a href="{{route('productDetails',[$gent->id])}}">{{$gent->product_name}}</a>
 		    	</div>
 		    	<div class="buyprice col-md-12 col-sm-6">
-		    		@if($gent->discount)
-		    		<?php
-		    			$result=0;
-		    			$result=$gent->price-($gent->price * $gent->discount/100);
-		    		?>
-		    		<span>Price: <del class="errorprice">{{$gent->price}}</del></span>
-		    		<span>{{$result}} TK</span>
-		    		@else
-		    		<span>Price: {{$gent->price}} TK</span>
-		    		@endif
+					<div class="row">
+						@if($gent->discount)
+							<?php
+							$result=0;
+							$result=$gent->price-($gent->price * $gent->discount/100);
+							?>
+							<span>Price: <del class="errorprice">{{$gent->price}}</del></span>
+							<span>{{$result}} TK</span>
+						@else
+							<span>Price: {{$gent->price}} TK</span>
+						@endif
+					</div>
 		    	</div>
 		    	<a href="{{route('productDetails',[$gent->id])}}" class="btn btn-success col-md-12">Buy Now</a>
 		    </div>
@@ -87,16 +89,18 @@
 		    		<a href="">{{$lady->product_name}}</a>
 		    	</div>
 		    	<div class="buyprice col-md-12 col-sm-6">
-		    		@if($lady->discount)
-		    		<?php
-		    			$result=0;
-		    			$result=$lady->price-($lady->price * $lady->discount/100);
-		    		?>
-		    		<span>Price: <del class="errorprice">{{$lady->price}}</del></span>
-		    		<span>{{$result}} TK</span>
-		    		@else
-		    		<span>Price: {{$lady->price}} TK</span>
-		    		@endif
+					<div class="row">
+						@if($lady->discount)
+							<?php
+							$result=0;
+							$result=$lady->price-($lady->price * $lady->discount/100);
+							?>
+							<span>Price: <del class="errorprice">{{$lady->price}}</del></span>
+							<span>{{$result}} TK</span>
+						@else
+							<span>Price: {{$lady->price}} TK</span>
+						@endif
+					</div>
 		    	</div>
 		    	<a href="{{route('productDetails',[$lady->id])}}" class="btn btn-success col-md-12">Buy Now</a>
 		    </div>
@@ -126,16 +130,18 @@
 		    		<a href="{{route('productDetails',[$gadget->id])}}">{{$gadget->product_name}}</a>
 		    	</div>
 		    	<div class="buyprice col-md-12 col-sm-8">
-		    		@if($gadget->discount)
-		    		<?php
-		    			$result=0;
-		    			$result=$gadget->price-($gadget->price * $gadget->discount/100);
-		    		?>
-		    		<span>Price: <del class="errorprice">{{$gadget->price}}</del></span>
-		    		<span>{{$result}} TK</span>
-		    		@else
-		    		<span>Price: {{$gadget->price}} TK</span>
-		    		@endif
+					<div class="row">
+						@if($gadget->discount)
+							<?php
+							$result=0;
+							$result=$gadget->price-($gadget->price * $gadget->discount/100);
+							?>
+							<span>Price: <del class="errorprice">{{$gadget->price}}</del></span>
+							<span> {{$result}} TK</span>
+						@else
+							<span>Price: {{$gadget->price}} TK</span>
+						@endif
+					</div>
 		    	</div>
 		    	<a href="{{route('productDetails',[$gadget->id])}}" class="btn btn-success col-md-12">Buy Now</a>
 		    </div>
