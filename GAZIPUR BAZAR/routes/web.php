@@ -153,8 +153,8 @@ Route::group(['middleware'=>['userSess']],function(){
 // Admin Panel
 
 
-Route::get('/admin/index','AdminController@adminLogin')->name('admin.adminLogin');
-Route::post('/admin/index','AdminController@adminLoginVerify')->name('admin.adminLoginVerify');
+Route::get('/admin/admin-index','AdminController@adminLogin')->name('admin.adminLogin');
+Route::post('/admin/admin-index','AdminController@adminLoginVerify')->name('admin.adminLoginVerify');
 
 // Password Reset Link
 
@@ -165,6 +165,7 @@ Route::post('/password/reset/{token}','PasswordResetController@resetPass')->name
 
 
 Route::group(['middleware'=>['adminSess']],function(){
+
 	Route::get('/admin/logout','AdminController@logOut')->name('admin.logOut');
 
 	Route::get('/admin/edit/{id}','AdminController@adminEdit')->name('admin.edit');

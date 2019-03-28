@@ -24,14 +24,15 @@
         <div class="collapse navbar-collapse" id="collapsenavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    @forelse($admins as $admin)
+                        @forelse($admins as $admin)
 					<a class="nav-link" data-toggle="collapse" data-target="#demo" href="">Account</a>
 					<div class="collapse" id="demo">
                         <a href="{{route('admin.edit',[$admin->id])}}" class="nav-link">Profile</a>
 						<a href="{{route('admin.logOut')}}" class="nav-link">Logout</a>
 					</div>
-                    @empty
-                    @endforelse
+                        @break
+                        @empty
+                        @endforelse
 				</li>
             </ul>
         </div>
