@@ -49,6 +49,7 @@
 											<h4 class="m-auto">Name</h4>
 											<div class="card-body">
 												<input type="hidden" name="product_id" id="add-cart-id" value="{{$products->id}}">
+												<input type="hidden" name="cartimage" value="{{$products->image1}}">
 												<div class="form-group row">
 													<label class="col-md-6 lbl">Category:</label>
 													<label class="col-md-6 lbl">{{$products->category_name}}</label>
