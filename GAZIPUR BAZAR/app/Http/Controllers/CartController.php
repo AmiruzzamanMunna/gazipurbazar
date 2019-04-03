@@ -42,6 +42,8 @@ class CartController extends Controller
     	$cart= new Cart();
     	$cart->user_id= $user;
     	$cart->product_id=$request->product_id;
+    	$cart->productimage=$request->productimage;
+    	$cart->productname=$request->productname;
     	if ($request->product_size) {
     		$cart->size=$request->product_size;
     	}

@@ -15,8 +15,8 @@
 		            		<div class="table-responsive">
 		            			<table class="table table-bordered table-striped table-hover">
 				                    <tr>
-				                        <th>User id</th>
-				                        <th>Product Id</th>
+				                        <th>Image</th>
+				                        <th>Product Name</th>
 				                        <th>Quantity</th>
 				                        <th>Size</th>
 				                        <th>Unit Price</th>
@@ -30,14 +30,22 @@
 			                    	$subtotal=$cart->quantity*$cart->unit_price;
 				                    ?>
 				                    <tr>
-				                    	<td>{{$cart->user_id}}</td>
-				                    	<td>{{$cart->product_id}}</td>
+										<td><img id="td1" class="cartimg img-fluid" src="{{asset('images/product')}}/{{$cart->productimage}}" alt="td1"></td>
+				                    	<td>{{$cart->productname}}</td>
 				                    	<td>{{$cart->quantity}}</td>
 				                    	<td>{{$cart->size}}</td>
 				                    	<td>{{$cart->unit_price}}</td>
 				                    	<td>{{$subtotal}}</td>
-				                    	<td><a href="{{route('cart.cartRemove',[$cart->id])}}" class="cart_link">Remove</a></td>
-				                    	<td><a href="{{route('cart.cartEdit',[$cart->id])}}" class="cart_link">Update</a></td>
+				                    	<td>
+											<div class="row m-auto">
+												<a href="{{route('cart.cartRemove',[$cart->id])}}" class="cart_link btn btn-danger"><i class="fas fa-trash-alt"></i>Remove</a>
+											</div>
+										</td>
+				                    	<td>
+											<div class="row m-auto">
+												<a href="{{route('cart.cartEdit',[$cart->id])}}" class="cart_link btn btn-success"><i class="fas fa-edit"></i>Update</a>
+											</div>
+										</td>
 				                    </tr>
 				                	@empty
 				                	<h1>Sorry No Product is Available</h1>

@@ -16,7 +16,7 @@
 										<form method="post">
 											{{csrf_field()}}
 											<div class="card crd">
-													<h4 class="m-auto">Product Id:{{$cart_item->product_id}}</h4>
+													<h4 class="m-auto">Product Name:{{$cart_item->productname}}</h4>
 												<div class="card-body">
 													
 													<div class="form-group row">

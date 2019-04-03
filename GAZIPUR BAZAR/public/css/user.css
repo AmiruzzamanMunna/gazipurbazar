@@ -280,13 +280,17 @@ a:hover{
 .cart_link{
 	color: black;
 }
+.cartimg{
+	width: 140px;
+	height: 140px;
+}
 /*Checkout*/
 .checkout_form{
 	margin-top: 150px;
 }
 /*invoice*/
 .cardinvoice{
-	margin-top: 50px;
+	margin-top: 150px;
 }
 /*account*/
 .userorder{
