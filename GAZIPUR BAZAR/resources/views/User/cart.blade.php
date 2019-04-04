@@ -63,13 +63,14 @@
 		            		</div>
             			</div>
             			<div class="card-footer">
-            				<div class="row">
-        					<div class="col-md-6 m-auto">
-            					<a href="{{route('user.index')}}" class="btn btn-primary cart_link">Go Shopping</a>
-            				</div>
-            				<div class="col-md-4 ml-auto">
-            					<a href="{{route('order.checkOut')}}" class="btn btn-success col-md-7 cart_link">Check Out</a>
-            				</div>
+            				<div class="row m-auto">
+								<div class="col-6 ml-auto">
+									<a href="{{route('user.index')}}" class="btn btn-primary cart_link">Go Shopping</a>
+								</div>
+								<div class="col-5">
+									<a href="{{route('order.checkOut')}}" class="btn btn-success cart_link">Check Out</a>
+								</div>
+							</div>
             			</div>	
             		</form>
        			</div>
