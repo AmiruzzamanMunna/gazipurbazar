@@ -21,7 +21,7 @@
 </script>
 @endsection
 @section('container')
-<div class="container-fluid">
+<div class="container-fluid" id="addcart">
 	<div class="row ml-auto">
 		<div class="col-md-12">
 			<div class="row ml-auto">
@@ -40,89 +40,87 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-12">
-									<form method="POST" action="{{route('cart.addCart')}}">
-										{{csrf_field()}}
-										<?php
-											$result=0;
-										?>
-										<div class="card crd">
-											<h4 class="m-auto">Name</h4>
-											<div class="card-body">
-												<input type="hidden" name="product_id" id="add-cart-id" value="{{$products->id}}">
-												<input type="hidden" name="productimage" value="{{$products->image1}}">
-												<input type="hidden" name="productname" value="{{$products->product_name}}">
-												<div class="form-group row">
-													<label class="col-md-6 lbl">Category:</label>
-													<label class="col-md-6 lbl">{{$products->category_name}}</label>
-												</div>
-												<div class="form-group row">
-													<label class="col-md-6 lbl">Name:</label>
-													<label class="col-md-6 lbl">{{$products->product_name}}</label>
-												</div>
-												@if(count($sizes))
-												<div class="form-group row">
-													<label class="col-md-6 lbl">Size:</label>
-													<div class="col-md-6">
-														<select name="product_size" class="form-control">
-															@forelse($sizes as $size)
-															<option value="{{$size}}">{{$size}}</option>
-															@empty
-															@endforelse
-														</select>
-													</div>
-												</div>
-												@endif
-												<div class="form-group row">
-													<label class="col-md-6 lbl">Available:
-													</label>
-													@if($products->quantity>0)
-													<label class="col-md-6 lbl">
-														In Stock
-													</label>
-													@else
-													<label class="col-md-6 lbl">
-														Out of Stock
-													</label>
-													@endif
-												</div>
-												@if($products->discount)
-												<div class="form-group row">
-													<label class="col-md-6 lbl">Discount:</label>
-													<label class="col-md-6 lbl">{{$products->discount}}%</label>
-												</div>
-												@endif
-												<div class="form-group row">
-													@if($products->discount)
-													<?php
-													$result=0;
-													$result=$products->price-($products->price*$products->discount/100) 
-													?>
-													<label class="col-md-6 lbl">Price:</label>
-													<label class="col-md-6 lbl">
-														<del>{{$products->price}} </del> {{$result}} TK
-													</label>
-													@else
-													<label class="col-md-6 lbl">Price:</label>
-													<label class="col-md-6 lbl">{{$products->price}} TK</label>
-													@endif
-												</div>
-												<div class="form-group row">
-													<label class="col-md-6 lbl">Quantity:</label>
-													<input type="number" id="add-cart-quantity" name="quantity" value="1">
-												</div>
-												<div class=" form-group row">
-													<div class="col-md-12">
-														<button type="submit" id="add-cart-button" class="btn btn-success col-md-12">Add To Cart</button>
-													</div>
-													@if(session('message'))
-						                            <div class="alert alert-danger m-auto">
-						                                {{session('message')}}
-						                            </div>
-						                            @endif
+								
+									<?php
+										$result=0;
+									?>
+									<div class="card crd">
+										<h4 class="m-auto">Name</h4>
+										<div class="card-body">
+											<input type="hidden" name="product_id" id="add-cart-id" value="{{$products->id}}">
+											<input type="hidden" name="productimage" id="productimage" value="{{$products->image1}}">
+											<input type="hidden" name="productname" id="productname" value="{{$products->product_name}}">
+											<div class="form-group row">
+												<label class="col-md-6 lbl">Category:</label>
+												<label class="col-md-6 lbl">{{$products->category_name}}</label>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-6 lbl">Name:</label>
+												<label class="col-md-6 lbl">{{$products->product_name}}</label>
+											</div>
+											@if(count($sizes))
+											<div class="form-group row">
+												<label class="col-md-6 lbl">Size:</label>
+												<div class="col-md-6">
+													<select name="product_size" id="product_size" class="form-control">
+														@forelse($sizes as $size)
+														<option value="{{$size}}">{{$size}}</option>
+														@empty
+														@endforelse
+													</select>
 												</div>
 											</div>
+											@endif
+											<div class="form-group row">
+												<label class="col-md-6 lbl">Available:
+												</label>
+												@if($products->quantity>0)
+												<label class="col-md-6 lbl">
+													In Stock
+												</label>
+												@else
+												<label class="col-md-6 lbl">
+													Out of Stock
+												</label>
+												@endif
+											</div>
+											@if($products->discount)
+											<div class="form-group row">
+												<label class="col-md-6 lbl">Discount:</label>
+												<label class="col-md-6 lbl">{{$products->discount}}%</label>
+											</div>
+											@endif
+											<div class="form-group row">
+												@if($products->discount)
+												<?php
+												$result=0;
+												$result=$products->price-($products->price*$products->discount/100) 
+												?>
+												<label class="col-md-6 lbl">Price:</label>
+												<label class="col-md-6 lbl">
+													<del>{{$products->price}} </del> {{$result}} TK
+												</label>
+												@else
+												<label class="col-md-6 lbl">Price:</label>
+												<label class="col-md-6 lbl">{{$products->price}} TK</label>
+												@endif
+											</div>
+											<div class="form-group row">
+												<label class="col-md-6 lbl">Quantity:</label>
+												<input type="number" id="quantity" name="quantity" id="quantity" value="1">
+											</div>
+											<div class=" form-group row">
+												<div class="col-md-12">
+													<button type="submit" @click="addCart()" id="add-cart-button" class="btn btn-success col-md-12">Add To Cart</button>
+												</div>
+												@if(session('message'))
+												<div class="alert alert-danger m-auto">
+													{{session('message')}}
+												</div>
+												@endif
+											</div>
 										</div>
-									</form>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -175,4 +173,46 @@
 		
 	</div>
 </div>
+@section('vue')
+
+<script>
+	var app=new Vue({
+
+		el:"#addcart",
+
+		data:{
+
+			
+		},
+	
+		methods:{
+
+			addCart:function(){
+
+				console.log("click");
+
+				var product_id=$("#add-cart-id").val();
+				var productimage=$("#productimage").val();
+				var productname=$("#productname").val();
+				var product_size=$("#product_size").val();
+				var quantity=$("#quantity").val();
+				
+				axios.post('/cart/add',{
+					'product_id':product_id,
+					'productimage':productimage,
+					'productname':productname,
+					'product_size':product_size,
+					'quantity':quantity,
+				}).then(({data})=>$(".cartVal").html(data));
+
+			}
+		},
+		mounted:function(){
+
+			console.log('hahah');
+		}
+	});
+</script>
+	
+@endsection
 @endsection

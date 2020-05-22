@@ -12,6 +12,8 @@
 */
 
 
+Route::get('/test','TestController@test');
+Route::post('/test','TestController@testadd');
 Route::get('/', 'UserController@index')->name('user.index');
 Route::get('/UserRegistration','UserController@signUP')->name('user.signUP');
 Route::post('/UserRegistration','UserController@signUPStore')->name('user.signUPStore');

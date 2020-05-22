@@ -5,25 +5,21 @@
 	<link rel="shortcut icon" type="text/css" href="{{asset('images')}}/logo.jpg">
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{asset('vendor')}}/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/user.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{{asset('vendor')}}/jquery/jquery-3.3.1.min.js"></script>
+	<script src="{{asset('vendor')}}/bootstrap/js/bootstrap.bundle.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/owl.carousel.min.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/owl.theme.default.min.css">
-	<script
- 		src="https://code.jquery.com/jquery-3.3.1.min.js"
- 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  		crossorigin="anonymous">
-  </script>
-  <script src="{{asset('js')}}/owl.carousel.min.js"></script>
+  	<script src="{{asset('js')}}/owl.carousel.min.js"></script>
+  
 </head>
 <body>
 	<nav class="navbar navbar-expand-md fixed-top">
 		<a href="{{route('user.index')}}" class="navbar-brand droplink m-auto">
-			<img src="{{asset('images')}}/falcon.jpg" class="navbarimage">Gazipur Bazar
+			<img src="{{asset('images')}}/falcon.jpg" class="navbarimage">2marShop
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     		<span class="navbar-toggler-icon"></span>
@@ -102,8 +98,8 @@
  				<li class="nav-item">
  					<div class="row">
 						<a href="{{route('cart.cartIndex')}}" class="nav-link">
- 							<span class="cartitem">Cart({{$quantity}})
- 								<i class="fas fa-cart-arrow-down cart droplink"></i>
+ 							<span class="cartitem"><div class="cartVal" style="margin-left: 10px">{{$quantity}}</div>
+ 								<i class="fas fa-cart-arrow-down cart droplink fa-2x"></i>
  							</span>
  						</a>
  					</div>
@@ -112,6 +108,8 @@
  		</div>
 	</nav>
 	@yield('container')
+	@yield('script')
+	
 	<div class="row footerbody">
 		<div class="col-md-12 col-sm-12">
 			<div class="row">
@@ -130,7 +128,7 @@
 				</div>
 				<div class="col-md-4 col-sm-6">
 					<div class="col-md-8 m-auto">
-						<span class="footer_contain">gazipur.com</span>
+						<span class="footer_contain">2marShop.com</span>
 					</div>
 					<div class="itemelement">
 						@forelse($footers as $footer)
@@ -146,7 +144,7 @@
 						<div class="col-6 ml-auto">
 							<div class="row">
 								<div class="col-8 m-auto">
-									<span>&copy; 2019 All Rights Reserved by gazipurbazar.com.bd</span>
+									<span>&copy; 2019 All Rights Reserved by 2marShop.com</span>
 								</div>
 							</div>
 						</div>
@@ -162,6 +160,11 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
-@yield('script')
+<script src="{{asset('script/vuejs.js')}}"></script>
+<script src="{{asset('script/jquery.min.js')}}"></script>
+<script src="{{asset('script/vue.min.js')}}"></script>
+<script src="{{asset('script/axios.min.js')}}"></script>
+@yield('vue')
 </html>

@@ -9,7 +9,7 @@
     margin:10,
     nav:false,
     autoplay:true,
-    autoplayTimeout:2000,
+    autoplayTimeout:9000,
     responsiveClass:true,
     responsive:{
         0:{
@@ -32,6 +32,9 @@
 			<h1 class="contain-head">Men's clothing Collection</h1>
 		</div>
 		<div class="owl-carousel owl-theme owlitem"">
+			@php
+				$a=0
+			@endphp
 		    @forelse($gents as $gent)
 		    <div class="item">
 		    	@if($gent->discount)
@@ -151,4 +154,20 @@
 		</div>
 	</div>
 </div>
+@section('vue')
+
+<script>
+	var app=new Vue({
+
+		el:"",
+
+		mounted:function(){
+
+			console.log("hello Vue");
+		}
+	});
+</script>
+	
+@endsection
+
 @endsection
