@@ -18,12 +18,12 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-md fixed-top">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"  aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
 		<a href="{{route('user.index')}}" class="navbar-brand droplink m-auto">
 			<img src="{{asset('images')}}/falcon.jpg" class="navbarimage">2marShop
 		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    		<span class="navbar-toggler-icon"></span>
-  		</button>
   		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		    <ul class="navbar nav m-auto">
 				<li class="nav-item dropdown">
@@ -94,18 +94,27 @@
  				</li>
  				@endif
  			</ul>
- 			<ul class="navbar nav">
- 				<li class="nav-item">
- 					<div class="row">
-						<a href="{{route('cart.cartIndex')}}" class="nav-link">
- 							<span class="cartitem"><div class="cartVal" style="margin-left: 10px">{{$quantity}}</div>
- 								<i class="fas fa-cart-arrow-down cart droplink fa-2x"></i>
- 							</span>
- 						</a>
- 					</div>
- 				</li>
- 			</ul>
- 		</div>
+		</div>
+		<ul class="navbar nav">
+			<li class="nav-item">
+				<div class="row">
+				   <a href="{{route('cart.cartIndex')}}" class="nav-link">
+						@if ($quantity)
+						<span class="cartitem"><div class="cartVal" style="margin-left: 20px">{{$quantity}}</div>
+							<i class="fas fa-cart-arrow-down cart droplink fa-2x"></i>
+						</span>
+						@else
+
+						<span class="cartitem"><div class="cartVal" style="margin-left: 10px"></div>
+							<i class="fas fa-cart-arrow-down cart droplink fa-2x"></i>
+						</span>
+							
+						@endif
+						
+					</a>
+				</div>
+			</li>
+		</ul>
 	</nav>
 	@yield('container')
 	@yield('script')

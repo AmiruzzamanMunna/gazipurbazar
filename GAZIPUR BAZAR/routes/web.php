@@ -125,6 +125,7 @@ Route::get('/falcon/aboutus','UserController@aboutUs')->name('user.aboutUs');
 Route::get('/falcon/policy','UserController@policy')->name('user.policy');
 Route::get('/falcon/contact us','UserController@contactus')->name('user.contactus');
 Route::get('/cart','CartController@cartIndex')->name('cart.cartIndex');
+Route::post('/cart/add','CartController@addCart')->name('cart.addCart');
 
 Route::group(['middleware'=>['userSess']],function(){
 
@@ -133,7 +134,7 @@ Route::group(['middleware'=>['userSess']],function(){
 	Route::get('/account','UserController@userAccount')->name('user.userAccount');
 
 	
-	Route::post('/cart/add','CartController@addCart')->name('cart.addCart');
+	
 	Route::get('/cart/edit/{id}','CartController@cartEdit')->name('cart.cartEdit');
 	Route::post('/cart/edit/{id}','CartController@cartUpdate')->name('cart.cartUpdate');
 	Route::get('/cart/remove/{id}','CartController@cartRemove')->name('cart.cartRemove');

@@ -37,7 +37,7 @@ class CartController extends Controller
     	$user=$request->session()->get('loggedUser');
     	if (!$user) {
     		$request->session()->flash('message','Sorry ! You Need to login');
-    		return back();
+    		return response()->json(array('status'=>'login'));
 		}
 		$quantity=0;
     	$product=Product::find($request->product_id);

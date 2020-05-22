@@ -176,13 +176,14 @@
 @section('vue')
 
 <script>
+
 	var app=new Vue({
 
 		el:"#addcart",
 
 		data:{
 
-			
+			check:""
 		},
 	
 		methods:{
@@ -203,7 +204,7 @@
 					'productname':productname,
 					'product_size':product_size,
 					'quantity':quantity,
-				}).then(({data})=>$(".cartVal").html(data));
+				}).then(({data})=>(data.status=='login')?location.replace("{{route('user.login')}}"):$(".cartVal").html(data));
 
 			}
 		},

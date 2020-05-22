@@ -16,6 +16,7 @@ class UserSess
     public function handle($request, Closure $next)
     {
         if (!$request->session()->get('loggedUser')) {
+            
             return redirect()->route('user.login');
         }
         return $next($request);
