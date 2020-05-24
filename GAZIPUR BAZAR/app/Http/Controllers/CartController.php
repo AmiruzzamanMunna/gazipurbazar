@@ -30,7 +30,31 @@ class CartController extends Controller
         ->with('totals',$totals)
         ->with('carts',$carts)
         ->with('user',$user);
-    }
+	}
+	public function getAllCart(Request $request)
+	{
+		$user = $request->session()->get('loggedUser');
+		$carts=Cart::where('user_id',$user)->get();
+		$dataArray=[];
+		$total=0;
+		foreach($carts as $key=>$data){
+
+			$dataArray[]=[
+
+				'id'=>$data->id,
+				'key'=>$key+1,
+				'image'=>asset('images/product/'.$data->productimage),
+				'name'=>$data->productname,
+				'size'=>$data->size,
+				'quantity'=>$data->quantity,
+				'unit_price'=>$data->unit_price,
+				'subtotal'=>$data->quantity*$data->unit_price,
+				
+			];
+			$total+=$data->total_price;
+		}
+		return response()->json(array('data'=>$dataArray,'total'=>$total));
+	}
     public function addCart(Request $request)
     {
 		
@@ -82,33 +106,27 @@ class CartController extends Controller
     	}
 		return response()->json($quantity);
     }
-    public function cartEdit(Request $request,$id)
+    public function cartEdit(Request $request)
     {
-    	$carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
 
-            $quantity+=$cart->quantity;
-        }
-        $footers=ContactUs::all();
-        $cart=Cart::where('id',$id)->get();
-    	return view('User.updatecart')
-    	->with('cart',$cart)
-        ->with('footers',$footers)
-    	->with('quantity',$quantity);
+		$id=$request->id;
+		
+		$cart=Cart::where('id',$id)
+					->where('user_id',$request->session()->get('loggedUser'))
+					->first();
+
+		$available=Product::find($cart->product_id);
+		
+		return response()->json(array('data'=>$cart,'available'=>$available));
     }
-    public function cartUpdate(QuantityRequest $request,$id)
+    public function cartUpdate(Request $request)
     {
     	$carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
-
-            $quantity+=$cart->quantity;
-        }
+        
         $cart=Cart::find($request->id);
     	$product=Product::find($cart->product_id);
-    	if ($request->quantity<=$product->quantity) {
-    		$cart->quantity = $request->quantity;
+    	if ($request->upquantity<=$product->quantity) {
+    		$cart->quantity = $request->upquantity;
     	}
     	else{
     		$request->session()->flash('message','Sorry ! Product is Out of Stock');
@@ -116,18 +134,27 @@ class CartController extends Controller
     	}
     	$cart->total_price=$cart->unit_price*$cart->quantity;
     	$cart->save();
-    	return redirect()->route('cart.cartIndex');
+    
     }
-    public function cartRemove(Request $request,$id)
+    public function cartRemove(Request $request)
     {
-    	$carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+    	
         $quantity=0;
-        foreach($carts as $cart){
+        
+		$carts=Cart::where('id',$request->id)
+					->where('user_id',$request->session()->get('loggedUser'))
+					->delete();
 
-            $quantity+=$cart->quantity;
+		$carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+
+		$total=0;
+
+		foreach($carts as $cart){
+
+			$quantity+=$cart->quantity;
+			$total+=$cart->total_price;
         }
-    	$carts=Cart::find($request->id);
-    	$carts->delete();
-    	return back();
+		
+		return response()->json(array('data'=>$quantity,'total'=>$total));
     }
 }

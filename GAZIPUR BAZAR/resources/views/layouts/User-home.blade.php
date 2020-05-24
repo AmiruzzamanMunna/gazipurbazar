@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/user.css">
 	<script src="{{asset('vendor')}}/jquery/jquery-3.3.1.min.js"></script>
+	<script src="{{asset('script/jquery.min.js')}}"></script>
 	<script src="{{asset('vendor')}}/bootstrap/js/bootstrap.bundle.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/owl.carousel.min.css">
@@ -172,7 +173,6 @@
 	
 </body>
 <script src="{{asset('script/vuejs.js')}}"></script>
-<script src="{{asset('script/jquery.min.js')}}"></script>
 <script src="{{asset('script/vue.min.js')}}"></script>
 <script src="{{asset('script/axios.min.js')}}"></script>
 @yield('vue')

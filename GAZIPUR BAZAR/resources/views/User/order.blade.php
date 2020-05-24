@@ -14,13 +14,13 @@
 						<div class="form-group row">
 							<label class="col-md-3">Name:</label>
 							<div class="col-md-8">
-								<input type="text" class="form-control" name="name">
+								<input type="text" class="form-control" name="name" value="{{$user->name}}">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-md-3">Mobile No 1:</label>
 							<div class="col-md-8">
-								<input type="number" class="form-control" name="mobile1">
+								<input type="number" class="form-control" value="{{$user->mobile}}" name="mobile1">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -32,13 +32,13 @@
 						<div class="form-group row">
 							<label class="col-md-3">Address:</label>
 							<div class="col-md-8">
-								<input type="text" class="form-control" name="address">
+								<input type="text" class="form-control" value="{{$user->address}}" name="address">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-md-3">E-Mail:</label>
 							<div class="col-md-8">
-								<input type="email" class="form-control" name="email">
+								<input type="email" class="form-control" value="{{$user->email}}" name="email">
 							</div>
 						</div>
 						@if($errors->any())
@@ -49,10 +49,10 @@
 							</ul>
 						@endif
 						<div class="row">
-							<div class="col-md-9">
+							{{-- <div class="col-md-9">
 								<input type="reset" class="btn btn-danger" name="" value="Reset">
-							</div>
-							<div class="col-md-3">
+							</div> --}}
+							<div class="col-md-3 ml-auto">
 								<input type="submit" class="btn btn-success" name="" value="Confirm">
 							</div>
 						</div>

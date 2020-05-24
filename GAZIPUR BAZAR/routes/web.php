@@ -135,9 +135,11 @@ Route::group(['middleware'=>['userSess']],function(){
 
 	
 	
-	Route::get('/cart/edit/{id}','CartController@cartEdit')->name('cart.cartEdit');
-	Route::post('/cart/edit/{id}','CartController@cartUpdate')->name('cart.cartUpdate');
-	Route::get('/cart/remove/{id}','CartController@cartRemove')->name('cart.cartRemove');
+	Route::get('/cart/getAllCart','CartController@getAllCart')->name('cart.getAllCart');
+
+	Route::post('/cart/edit','CartController@cartEdit')->name('cart.cartEdit');
+	Route::post('/cart/update','CartController@cartUpdate')->name('cart.cartUpdate');
+	Route::post('/cart/remove','CartController@cartRemove')->name('cart.cartRemove');
 
 	Route::get('/checkout','OrderController@checkOut')->name('order.checkOut');
 	Route::post('/checkout','OrderController@checkOutStore')->name('order.checkOutStore');

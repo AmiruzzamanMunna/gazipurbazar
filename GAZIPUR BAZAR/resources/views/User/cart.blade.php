@@ -3,7 +3,36 @@
 	Cart
 @endsection
 @section('container')
-<div class="row">
+<div class="row" id="cartDetails">
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Product Update</h5>
+				
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="">Product Name</label>
+						<input type="text" name="" id="upname" readonly class="form-control">
+						<input type="hidden" id="upid">
+					</div>
+					<div class="form-group">
+						<label for="">Quantity</label>&nbsp;<label id="avail"></label>
+						<input type="text" name="" id="upquantity" class="form-control">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" @click="cartSave()">Save changes</button>
+				</div>
+			</div>
+		</div>
+  	</div>
     <div class="col-md-12 col-sm-12">
         <div class="row">
         	<div class="col-md-7 col-sm-12 m-auto">
@@ -15,8 +44,9 @@
 		            		<div class="table-responsive">
 		            			<table class="table table-bordered table-striped table-hover">
 				                    <tr>
+				                        <th>Sl No</th>
 				                        <th>Image</th>
-				                        <th>Product Name</th>
+				                        <th>Name</th>
 				                        <th>Quantity</th>
 				                        <th>Size</th>
 				                        <th>Unit Price</th>
@@ -24,38 +54,34 @@
 				                        <th>Remove</th>
 				                        <th>Update</th>
 				                    </tr>
-				                    @forelse($carts as $cart)
-				                    <?php
-			                    	$subtotal=0;
-			                    	$subtotal=$cart->quantity*$cart->unit_price;
-				                    ?>
-				                    <tr>
-										<td><img id="td1" class="cartimg img-fluid" src="{{asset('images/product')}}/{{$cart->productimage}}" alt="td1"></td>
-				                    	<td>{{$cart->productname}}</td>
-				                    	<td>{{$cart->quantity}}</td>
-				                    	<td>{{$cart->size}}</td>
-				                    	<td>{{$cart->unit_price}}</td>
-				                    	<td>{{$subtotal}}</td>
+				                    
+				                    <tr v-for="data in getData">
+
+										<td>@{{data.key}}</td>
+										<td><img id="td1" class="cartimg img-fluid" v-bind:src="data.image" alt="td1"></td>
+				                    	<td>@{{data.name}}</td>
+				                    	<td>@{{data.quantity}}</td>
+				                    	<td>@{{data.size}}</td>
+				                    	<td>@{{data.unit_price}}</td>
+										<td>@{{data.subtotal}}</td>
 				                    	<td>
 											<div class="row m-auto">
-												<a href="{{route('cart.cartRemove',[$cart->id])}}" class="cart_link btn btn-danger"><i class="fas fa-trash-alt"></i>Remove</a>
+												<i class="fas fa-trash-alt" @click="cartRemove(data.id)"></i>
 											</div>
 										</td>
 				                    	<td>
 											<div class="row m-auto">
-												<a href="{{route('cart.cartEdit',[$cart->id])}}" class="cart_link btn btn-success"><i class="fas fa-edit"></i>Update</a>
+												<i class="fas fa-edit" @click="cartUpdate(data.id)"></i>
 											</div>
 										</td>
 				                    </tr>
-				                	@empty
-				                	<h1>Sorry No Product is Available</h1>
-				                	@endforelse
+
 		           			 	</table>
 		           			 	<div class="row">
 		           			 		<div class="col-md-12">
 		           			 			<div class="row">
 		           			 				<div class="col-md-5 ml-auto">
-		           			 					<label class="pull-right">Total Price: {{$totals}} TK</label>
+		           			 					<label class="pull-right" id="total">Total Price:  TK</label>
 		           			 				</div>
 		           			 			</div>
 		           			 		</div>
@@ -77,6 +103,86 @@
         		</div>
         	</div>
         </div>
-    </div>
+	</div>
+	
 </div>
+
+@section('vue')
+
+	<script>
+		var app=new Vue({
+
+			el:"#cartDetails",
+			data:{
+
+				getData:[],
+			},
+
+			methods:{
+
+				getAllCart:function(){
+
+					axios.get('/cart/getAllCart').then(response=>{
+
+						this.getData=response.data.data,
+						$("#total").html('Total Price:'+response.data.total+' Tk')
+						
+					});
+
+				
+				},
+				cartUpdate:function(id){
+
+					console.log(id);
+					$('#exampleModal').modal('show');
+
+					$("#upid").val(id);
+					axios.post('/cart/edit',{
+
+						id:id,
+
+					}).then(response=>{
+
+						$("#upname").val(response.data.data.productname),
+						$("#upquantity").val(response.data.data.quantity),
+						$("#avail").html('<label> (Available-'+response.data.available.quantity+')</label>')
+					});
+				},
+				cartSave:function(){
+
+					id=$("#upid").val();
+					upquantity=$("#upquantity").val();
+
+					
+
+					axios.post('/cart/update',{
+						id:id,
+						upquantity:upquantity,
+					});
+
+					$('#exampleModal').modal('hide');
+
+					this.getAllCart();
+				},
+				cartRemove:function(id){
+
+					console.log(id);
+					axios.post('/cart/remove',{id:id}).then(response=>{
+						$(".cartVal").html(response.data.data),
+						$("#total").html('Total Price:'+response.data.total+' Tk')
+					});
+					this.getAllCart();
+				}
+			},
+			mounted:function(){
+
+				console.log('hello');
+				this.getAllCart();
+			}
+		});
+
+	
+	</script>
+	
+@endsection
 @endsection
