@@ -93,8 +93,8 @@
 								<div class="col-6 ml-auto">
 									<a href="{{route('user.index')}}" class="btn btn-primary cart_link">Go Shopping</a>
 								</div>
-								<div class="col-5">
-									<a href="{{route('order.checkOut')}}" class="btn btn-success cart_link">Check Out</a>
+								<div class="col-5" id="order">
+									
 								</div>
 							</div>
             			</div>	
@@ -110,6 +110,7 @@
 @section('vue')
 
 	<script>
+
 		var app=new Vue({
 
 			el:"#cartDetails",
@@ -122,12 +123,25 @@
 
 				getAllCart:function(){
 
+
 					axios.get('/cart/getAllCart').then(response=>{
 
 						this.getData=response.data.data,
-						$("#total").html('Total Price:'+response.data.total+' Tk')
+
+						(this.getData.length>0)?
+						
+						
+						$("#order").html('<a href="{{route('order.checkOut')}}" class="btn btn-success cart_link">Check Out</a>')
+						:
+						$("#order").html(''),
+
+						(response.data.total)?
+						$("#total").html('Total Price:'+response.data.total+' Tk')	
+						:
+						$("#total").html('Total Price:'+0+' Tk')
 						
 					});
+					
 
 				
 				},

@@ -37,6 +37,7 @@ class CartController extends Controller
 		$carts=Cart::where('user_id',$user)->get();
 		$dataArray=[];
 		$total=0;
+		$count=count($carts);
 		foreach($carts as $key=>$data){
 
 			$dataArray[]=[
@@ -53,7 +54,7 @@ class CartController extends Controller
 			];
 			$total+=$data->total_price;
 		}
-		return response()->json(array('data'=>$dataArray,'total'=>$total));
+		return response()->json(array('data'=>$dataArray,'total'=>$total,'count'=>$count));
 	}
     public function addCart(Request $request)
     {

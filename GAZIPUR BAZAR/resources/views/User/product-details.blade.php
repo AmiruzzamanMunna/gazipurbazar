@@ -76,7 +76,7 @@
 												</label>
 												@if($products->quantity>0)
 												<label class="col-md-6 lbl">
-													In Stock
+													{{$products->quantity}}
 												</label>
 												@else
 												<label class="col-md-6 lbl">
@@ -107,7 +107,7 @@
 											</div>
 											<div class="form-group row">
 												<label class="col-md-6 lbl">Quantity:</label>
-												<input type="number" id="quantity" name="quantity" id="quantity" value="1">
+												<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
 											</div>
 											<div class=" form-group row">
 												<div class="col-md-12">
@@ -173,6 +173,19 @@
 		
 	</div>
 </div>
+<style>
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+	}
+	
+	/* Firefox */
+	input[type=number] {
+	  -moz-appearance: textfield;
+	}
+	</style>
 @section('vue')
 
 <script>
@@ -205,6 +218,30 @@
 					'product_size':product_size,
 					'quantity':quantity,
 				}).then(({data})=>(data.status=='login')?location.replace("{{route('user.login')}}"):$(".cartVal").html(data));
+
+			},
+			addNum:function(){
+
+				var quantity=$("#quantity").val();
+				
+				$("#quantity").val(parseInt(quantity)+1);
+
+			},
+			removeNum:function(){
+
+				var quantity=$("#quantity").val();
+
+				if(quantity>=1){
+
+					$("#quantity").val(parseInt(quantity)-1);
+
+				}else{
+
+					return $("#quantity").val(1);
+
+				}
+				
+				
 
 			}
 		},
