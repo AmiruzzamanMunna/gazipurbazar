@@ -106,11 +106,21 @@ class OrderController extends Controller
         }
         return back();
     }
-    public function statuscancel(Request $request,$id)
+    public function statusreceived(Request $request,$id)
     {
         $orders=Invoice::where('id',$id)->first();
         if($orders){
             $orders->status=3;
+            // dd($orders);
+            $orders->save();
+        }
+        return back();
+    }
+    public function statuscancel(Request $request,$id)
+    {
+        $orders=Invoice::where('id',$id)->first();
+        if($orders){
+            $orders->status=4;
             $orders->save();
         }
         return back();

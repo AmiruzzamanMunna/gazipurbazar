@@ -61,11 +61,13 @@
 							<td>{{$order->cart_size}}</td>
 							<td>
 								@if($order->status==1)
-									Pending
+                                	<span class="badge badge-primary" style="font-size: medium">Pending</span>
 								@elseif($order->status==2)
-									Delivered
+									<span class="badge badge-success" style="font-size: medium">Delivered</span>
+								@elseif($order->status==3)
+									<span class="badge badge-warning" style="font-size: medium">Received</span>
 								@else
-									Cancel
+									<span class="badge badge-danger" style="font-size: medium">Cancel</span>
 								@endif
 							</td>
 						</tr>
@@ -86,10 +88,13 @@
 					<div class="col-md-12">
 						<div class="row">
 							@foreach($orders as $order)
-							<div class="col-md-4 m-auto">
+							<div class="col-md-3 ml-auto">
 								<button type="button" class="btn btn-danger"><a href="{{route('order.statuscancel',[$order->invoice_id])}}">Canceled</a></button>
 							</div>
-							<div class="col-md-4 ml-auto">
+							<div class="col-md-3 m-auto">
+								<button type="button" class="btn btn-warning"><a href="{{route('order.statusreceived',[$order->invoice_id])}}">Received</a></button>
+							</div>
+							<div class="col-md-2 mr-auto">
 								<button type="button" class="btn btn-success"><a href="{{route('order.statusdelivered',[$order->invoice_id])}}">Delivered</a></button>
 							</div>
 							@break

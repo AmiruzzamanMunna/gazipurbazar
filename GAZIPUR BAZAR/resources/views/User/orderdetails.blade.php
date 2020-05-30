@@ -46,11 +46,13 @@
                         <td>{{$order->cart_size}}</td>
                         <td>
                             @if($order->status==1)
-                                Pending
+                                <span class="badge badge-primary" style="font-size: medium">Pending</span>
                             @elseif($order->status==2)
-                                Delivered
+                                <span class="badge badge-success" style="font-size: medium">Delivered</span>
+                            @elseif($order->status==3)
+                                <span class="badge badge-warning" style="font-size: medium">Received</span>
                             @else
-                                Cancel
+                                <span class="badge badge-danger" style="font-size: medium">Cancel</span>
                             @endif
                         </td>
                     </tr>

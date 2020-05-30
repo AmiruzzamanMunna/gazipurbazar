@@ -265,6 +265,7 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::get('/order/canceled','AdminController@orderCanceled')->name('admin.orderCanceled');
 
 	Route::get('/admin/statusdelivered/{id}','OrderController@statusdelivered')->name('order.statusdelivered');
+	Route::get('/admin/statusreceived/{id}','OrderController@statusreceived')->name('order.statusreceived');
 	Route::get('/admin/statuscancel/{id}','OrderController@statuscancel')->name('order.statuscancel');
 
 });

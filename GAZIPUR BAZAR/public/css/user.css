@@ -330,3 +330,6 @@ a:hover{
 	margin-top: 150px;
 }
 .dropdown:hover .dropdown-menu {display: block;}
+a:hover {
+	color:black;
+  }

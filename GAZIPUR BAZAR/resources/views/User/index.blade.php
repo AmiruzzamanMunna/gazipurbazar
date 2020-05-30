@@ -1,6 +1,6 @@
 @extends('layouts.User-home')
 @section('title')
-	Gazipur Bazar
+	2marshop
 @endsection
 @section('script')
 <script>
