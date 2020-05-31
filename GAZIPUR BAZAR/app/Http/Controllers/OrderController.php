@@ -43,7 +43,7 @@ class OrderController extends Controller
     	}
     	$invoice= new Invoice();
     	$invoice->user_id=$userid;
-    	$invoice->Order_date=date('Y-m-d');
+    
     	$invoice->status=1;
     	if($invoice->save()>0)
     	{
@@ -66,7 +66,6 @@ class OrderController extends Controller
     			$product->quantity=$product->quantity-$cart->quantity;
     			$product->save();
     			$order->cart_totalprice=$carttotal;
-    			$order->orderdate=date('Y-m-d');
     			if ($order->save()>0) {
     				$cart=Cart::where('user_id',$request->session()->get('loggedUser'))
     							->delete();
@@ -113,6 +112,7 @@ class OrderController extends Controller
             $orders->status=3;
             // dd($orders);
             $orders->save();
+
         }
         return back();
     }
@@ -122,6 +122,16 @@ class OrderController extends Controller
         if($orders){
             $orders->status=4;
             $orders->save();
+
+            $cancelOrder=Order::where('invoice_id',$id)->get();
+
+            foreach($cancelOrder as $cancelOrder){
+
+                $product=Product::find($cancelOrder->cart_product_id);
+
+                $product->quantity=$product->quantity+$cancelOrder->cart_quantity;
+                $product->save();
+            }
         }
         return back();
     }

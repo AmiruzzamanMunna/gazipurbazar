@@ -88,8 +88,18 @@
 							<td>{{$order->Username}}</td>
 							<td>{{$order->mobile}}</td>
 							<td>{{$order->address}}</td>
-							<td>{{$order->Order_date}}</td>
-							<td>{{$order->name}}</td>
+							<td>{{date('h:i:s a d-m-y',strtotime($order->Order_date))}}</td>
+							<td>
+								@if($order->status==1)
+                                	<span class="badge badge-primary" style="font-size: medium">Pending</span>
+								@elseif($order->status==2)
+									<span class="badge badge-success" style="font-size: medium">Delivered</span>
+								@elseif($order->status==3)
+									<span class="badge badge-warning" style="font-size: medium">Received</span>
+								@else
+									<span class="badge badge-danger" style="font-size: medium">Cancel</span>
+								@endif
+							</td>
 							<td><a href="{{route('order.orderInfoShow',$order->id)}}" class="order btn btn-success">Show</a></td>
 						</tr>
 						@endforeach

@@ -93,15 +93,15 @@ class AdminController extends Controller
         foreach ($orders as $order){
             $current_order++;
         }
-        $orders=DB::table('view_invoice')->where('name','Pending')->get();
+        $orders=DB::table('view_invoice')->where('status',1)->get();
         foreach ($orders as $pending){
             $current_pending++;
         }
-        $orders=DB::table('view_invoice')->where('name','Delivered')->get();
+        $orders=DB::table('view_invoice')->where('status',2)->get();
         foreach ($orders as $deliver){
             $current_deliver++;
         }
-        $orders=DB::table('view_invoice')->where('name','Cancel')->get();
+        $orders=DB::table('view_invoice')->where('status',4)->get();
         foreach ($orders as $cancel){
             $current_cancel++;
         }
@@ -110,6 +110,7 @@ class AdminController extends Controller
         $orders=DB::table('view_invoice')
                 ->orderby('id','desc')
                 ->paginate(10);
+        
     	return view('Admin.index')
             ->with('admins',$admins)
             ->with('current_order',$current_order)
@@ -123,7 +124,7 @@ class AdminController extends Controller
     {
         $events=EventIndex::all();
         $admins=Admin::all();
-        $orders=DB::table('view_invoice')->where('name','Pending')->paginate(10);
+        $orders=DB::table('view_invoice')->where('status',1)->paginate(10);
         return view('Admin.order')
             ->with('events',$events)
             ->with('admins',$admins)
@@ -133,7 +134,7 @@ class AdminController extends Controller
     {
         $events=EventIndex::all();
         $admins=Admin::all();
-        $orders=DB::table('view_invoice')->where('name','Delivered')->paginate(10);
+        $orders=DB::table('view_invoice')->where('status',2)->paginate(10);
         return view('Admin.order')
             ->with('events',$events)
             ->with('admins',$admins)
@@ -143,7 +144,7 @@ class AdminController extends Controller
     {
         $events=EventIndex::all();
         $admins=Admin::all();
-        $orders=DB::table('view_invoice')->where('name','Cancel')->paginate(10);
+        $orders=DB::table('view_invoice')->where('status',4)->paginate(10);
         return view('Admin.order')
             ->with('events',$events)
             ->with('admins',$admins)

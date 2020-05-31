@@ -24,15 +24,17 @@
 					<label class="col-md-6">Address: </label>
 					<label class="col-md-6">{{$order->address}}</label>
 					<label class="col-md-6">Order date: </label>
-					<label class="col-md-6">{{$order->orderdate}}</label>
+					<label class="col-md-6">{{date('h:i:s a d-m-y',strtotime($order->orderdate))}}</label>
 					<label class="col-md-6">Status: </label>
 					<label class="col-md-6">
 						@if($order->status==1)
-							Pending
+							<span class="badge badge-primary" style="font-size: medium">Pending</span>
 						@elseif($order->status==2)
-							Delivered
+							<span class="badge badge-success" style="font-size: medium">Delivered</span>
+						@elseif($order->status==3)
+							<span class="badge badge-warning" style="font-size: medium">Received</span>
 						@else
-							cancel
+							<span class="badge badge-danger" style="font-size: medium">Cancel</span>
 						@endif
 					</label>
 				</div>
