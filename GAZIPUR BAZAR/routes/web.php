@@ -15,8 +15,9 @@
 Route::get('/test','TestController@test');
 Route::post('/test','TestController@testadd');
 Route::get('/', 'UserController@index')->name('user.index');
-Route::get('/UserRegistration','UserController@signUP')->name('user.signUP');
-Route::post('/UserRegistration','UserController@signUPStore')->name('user.signUPStore');
+Route::get('/emailValidate','User\UserRegistrationController@emailValidate')->name('user.emailValidate');
+Route::get('/UserRegistration','User\UserRegistrationController@signUP')->name('user.signUP');
+Route::post('/UserRegistration','User\UserRegistrationController@signUPStore')->name('user.signUPStore');
 
 // Password Reset Link
 
@@ -26,8 +27,8 @@ Route::post('/user/resetform','PasswordResetController@userResetMail')->name('pa
 Route::get('/user/resetlink/{token}','PasswordResetController@userSendResetlink')->name('password.userSendResetlink');
 Route::post('/user/resetlink/{token}','PasswordResetController@userResetPass')->name('password.userResetPass');
 
-Route::get('/userlogin','UserController@login')->name('user.login');
-Route::post('/userlogin','UserController@loginCheck')->name('user.loginCheck');
+Route::get('/userlogin','User\UserLoginController@login')->name('user.login');
+Route::post('/userlogin','User\UserLoginController@loginCheck')->name('user.loginCheck');
 
 Route::get('/newarrival','UserController@newarrival')->name('user.newarrival');
 Route::get('/discount','UserController@discount')->name('user.discount');
@@ -129,7 +130,7 @@ Route::post('/cart/add','CartController@addCart')->name('cart.addCart');
 
 Route::group(['middleware'=>['userSess']],function(){
 
-	Route::get('/logout','UserController@logout')->name('user.logout');
+	Route::get('/logout','User\UserLoginController@logout')->name('user.logout');
 
 	Route::get('/account','UserController@userAccount')->name('user.userAccount');
 

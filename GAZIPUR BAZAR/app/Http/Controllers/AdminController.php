@@ -44,7 +44,7 @@ class AdminController extends Controller
             ->with('admins',$admins)
             ->with('events',$events);
     }
-    public function adminLoginVerify(LoginRequest $request)
+    public function adminLoginVerify(Request $request)
     {
         $admin=Admin::where('username',$request->username)
                       ->first();

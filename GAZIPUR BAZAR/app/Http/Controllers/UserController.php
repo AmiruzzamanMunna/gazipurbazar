@@ -63,43 +63,8 @@ class UserController extends Controller
         $request->session()->flash('message','Registered Successsfully');
         return redirect()->route('user.login');
     }
-    public function login(Request $request)
-    {
-        $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
-
-            $quantity+=$cart->quantity;
-        }
-        $footers=ContactUs::all();
-        return view('User.login')
-        ->with('footers',$footers)
-        ->with('quantity',$quantity)
-        ->with('carts',$carts);
-    }
-    public function loginCheck(LoginRequest $request)
-    {
-        $users=User::where('username', $request->username)
-                    ->first();
-
-        if($users && Hash::check($request->password,$users->password)) {
-
-            $request->session()->put('loggedUser', $users->id);
-            $request->session()->flash('message','Login Successfull');
-            return redirect()->route('user.index');
-
-        }
-        else{
-            $request->session()->flash('message','Login Unseccessfull');
-            return back();
-        }
-    }
-    public function logout(Request $request)
-    {
-        $request->session()->flush();
-        $request->session()->regenerate();
-        return redirect()->guest(route('user.index'));
-    }
+    
+    
     public function index(Request $request)
     {
         $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();

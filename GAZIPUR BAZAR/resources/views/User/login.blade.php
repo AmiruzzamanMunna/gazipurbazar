@@ -19,9 +19,9 @@
 						<form method="POST" action="">
 							{{csrf_field()}}
 							<div class="form-group row">
-								<label class="col-md-3">User Name:</label>
+								<label class="col-md-3">Email:</label>
 								<div class="col-md-6">
-									<input type="text" class="form-control" name="username">
+									<input type="email" class="form-control" name="email">
 								</div>
 							</div>
 							<div class="form-group row">

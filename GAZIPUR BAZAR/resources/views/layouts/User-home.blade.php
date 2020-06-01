@@ -14,7 +14,8 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/owl.carousel.min.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/owl.theme.default.min.css">
-  	<script src="{{asset('js')}}/owl.carousel.min.js"></script>
+	<script src="{{asset('js')}}/owl.carousel.min.js"></script>
+	  @yield('validate')
   
 </head>
 <body>
