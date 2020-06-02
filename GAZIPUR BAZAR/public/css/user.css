@@ -253,7 +253,9 @@ a:hover{
 .lbl{
 	font-size: 20px;
 	font-family: Russo one;
+	margin-left: 41px;
 }
+
 /*Event wedding*/
 .carousel-inner img {
   width: 100%;

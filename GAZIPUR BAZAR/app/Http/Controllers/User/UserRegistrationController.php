@@ -53,7 +53,6 @@ class UserRegistrationController extends Controller
     {
         $user = new User();
         $user->name=$request->name;
-        $user->username=$request->username;
         $user->email=$request->email;
         $user->mobile=$request->mobile;
         $user->address=$request->address;

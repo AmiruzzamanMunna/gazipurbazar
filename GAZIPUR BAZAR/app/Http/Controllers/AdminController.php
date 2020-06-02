@@ -36,34 +36,7 @@ use App\ContactUs;
 
 class AdminController extends Controller
 {
-    public function adminLogin(Request $request)
-    {
-      $admins=Admin::all();
-        $events=EventIndex::all();
-        return view('Admin.adminlogin')
-            ->with('admins',$admins)
-            ->with('events',$events);
-    }
-    public function adminLoginVerify(Request $request)
-    {
-        $admin=Admin::where('username',$request->username)
-                      ->first();
-        if ($admin && Hash::check($request->password,$admin->password)) {
-            $request->session()->put('loggedAdmin',$admin->id);
-            $request->session()->flash('message','Login Successfull');
-            return redirect()->route('admin.index'); 
-        }
-        else{
-            $request->session()->flash('message','Login UnSuccessfull');
-            return back();
-        }
-    }
-    public function logOut(Request $request)
-    {
-        $request->session()->flush();
-        $request->session()->regenerate();
-        return redirect()->route('admin.adminLogin');
-    }
+    
     public function adminEdit(Request $request,$id)
     {
       $events=EventIndex::all();

@@ -45,23 +45,23 @@
 										$result=0;
 									?>
 									<div class="card crd">
-										<h4 class="m-auto">Name</h4>
+										<h4 class="m-auto">Product Description</h4>
 										<div class="card-body">
 											<input type="hidden" name="product_id" id="add-cart-id" value="{{$products->id}}">
 											<input type="hidden" name="productimage" id="productimage" value="{{$products->image1}}">
 											<input type="hidden" name="productname" id="productname" value="{{$products->product_name}}">
 											<div class="form-group row">
-												<label class="col-md-6 lbl">Category:</label>
-												<label class="col-md-6 lbl">{{$products->category_name}}</label>
+												<label class="lbl">Category &nbsp;:</label>
+												<label class="lbl">{{$products->category_name}}</label>
 											</div>
 											<div class="form-group row">
-												<label class="col-md-6 lbl">Name:</label>
-												<label class="col-md-6 lbl">{{$products->product_name}}</label>
+												<label class="lbl">Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+												<label class="lbl">{{$products->product_name}}</label>
 											</div>
 											@if(count($sizes))
 											<div class="form-group row">
-												<label class="col-md-6 lbl">Size:</label>
-												<div class="col-md-6">
+												<label class="lbl">Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+												<div class="lbl">
 													<select name="product_size" id="product_size" class="form-control">
 														@forelse($sizes as $size)
 														<option value="{{$size}}">{{$size}}</option>
@@ -72,22 +72,22 @@
 											</div>
 											@endif
 											<div class="form-group row">
-												<label class="col-md-6 lbl">Available:
+												<label class="lbl">Available &nbsp;:
 												</label>
 												@if($products->quantity>0)
-												<label class="col-md-6 lbl">
+												<label class="lbl">
 													{{$products->quantity}}
 												</label>
 												@else
-												<label class="col-md-6 lbl">
+												<label class="lbl">
 													Out of Stock
 												</label>
 												@endif
 											</div>
 											@if($products->discount)
 											<div class="form-group row">
-												<label class="col-md-6 lbl">Discount:</label>
-												<label class="col-md-6 lbl">{{$products->discount}}%</label>
+												<label class="lbl">Discount &nbsp;&nbsp;:</label>
+												<label class="lbl">{{$products->discount}}%</label>
 											</div>
 											@endif
 											<div class="form-group row">
@@ -96,18 +96,18 @@
 												$result=0;
 												$result=$products->price-($products->price*$products->discount/100) 
 												?>
-												<label class="col-md-6 lbl">Price:</label>
-												<label class="col-md-6 lbl">
+												<label class="lbl">Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+												<label class="lbl">
 													<del>{{$products->price}} </del> {{$result}} TK
 												</label>
 												@else
-												<label class="col-md-6 lbl">Price:</label>
-												<label class="col-md-6 lbl">{{$products->price}} TK</label>
+												<label class="lbl">Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+												<label class="lbl">{{$products->price}} TK</label>
 												@endif
 											</div>
 											<div class="form-group row">
-												<label class="col-md-6 lbl">Quantity:</label>
-												<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
+												<label class="lbl">Quantity &nbsp;&nbsp;:</label>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" class="form-control col-3" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
 											</div>
 											<div class=" form-group row">
 												<div class="col-md-12">

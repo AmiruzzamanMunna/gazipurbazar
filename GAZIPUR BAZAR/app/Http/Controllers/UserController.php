@@ -36,34 +36,6 @@ use App\ContactUs;
 
 class UserController extends Controller
 {
-    public function signUP(Request $request)
-    {
-        $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
-
-            $quantity+=$cart->quantity;
-        }
-        $footers=ContactUs::all();
-        return view('User.signup')
-            ->with('footers',$footers)
-            ->with('quantity',$quantity);
-    }
-    public function signUPStore(SignupRequest $request)
-    {
-        $user = new User();
-        $user->name=$request->name;
-        $user->username=$request->username;
-        $user->email=$request->email;
-        $user->mobile=$request->mobile;
-        $user->address=$request->address;
-        $user->password=Hash::make($request->password);
-        $user->confirm_password=Hash::make($request->confirm_password);
-        $user->save();
-        $request->session()->flash('message','Registered Successsfully');
-        return redirect()->route('user.login');
-    }
-    
     
     public function index(Request $request)
     {
