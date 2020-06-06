@@ -32,6 +32,8 @@ use App\LadiesIndex;
 use App\AboutUS;
 use App\Policy;
 use App\ContactUs;
+use Exception;
+
 
 
 class UserController extends Controller
@@ -39,26 +41,36 @@ class UserController extends Controller
     
     public function index(Request $request)
     {
-        $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
 
-            $quantity+=$cart->quantity;
+        try{
+
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $footers=ContactUs::all();
+            $gents=DB::table('view_product')
+            ->where('category_name','gents clothing')->get();
+            $ladies=DB::table('view_product')
+            ->where('category_name','ladies clothing')->get();
+            $gadgets=DB::table('view_product')
+            ->where('category_name','gadget')->get();
+            return view('User.index')
+            ->with('quantity',$quantity)
+            ->with('carts',$carts)
+            ->with('gents',$gents)
+            ->with('ladies',$ladies)
+            ->with('footers',$footers)
+            ->with('gadgets',$gadgets);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
+
         }
-        $footers=ContactUs::all();
-        $gents=DB::table('view_product')
-        ->where('category_name','gents clothing')->get();
-        $ladies=DB::table('view_product')
-        ->where('category_name','ladies clothing')->get();
-        $gadgets=DB::table('view_product')
-        ->where('category_name','gadget')->get();
-    	return view('User.index')
-        ->with('quantity',$quantity)
-        ->with('carts',$carts)
-        ->with('gents',$gents)
-        ->with('ladies',$ladies)
-        ->with('footers',$footers)
-        ->with('gadgets',$gadgets);
+        
     }
     public function newarrival(Request $request)
     {

@@ -20,11 +20,13 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-md fixed-top">
+		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"  aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
-  		</button>
+		</button>
+		  
 		<a href="{{route('user.index')}}" class="navbar-brand droplink m-auto">
-			<img src="{{asset('images')}}/falcon.jpg" class="navbarimage">2marShop
+			<img src="{{asset('images/2mar')}}/2marshop.svg" class="navbarimage">2marShop
 		</a>
   		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		    <ul class="navbar nav m-auto">
