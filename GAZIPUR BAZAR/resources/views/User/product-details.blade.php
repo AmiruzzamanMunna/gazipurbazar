@@ -134,15 +134,13 @@
 			<div class="row m-auto">
 				<div class="col-md-11 m-auto">
 					<div class="row m-auto">
-						<div class="col-md-2 dvim">
-							<img id="im1" class="simg img-fluid" src="{{asset('images/product')}}/{{$products->image1}}" alt="im1" onclick="change();">
-						</div>
-						<div class="col-md-2 dvim">
-							<img id="#" class="simg img-fluid" src="{{asset('images/product')}}/{{$products->image2}}" onclick="change1();">
-						</div>
-						<div class="col-md-2 dvim">
-							<img id="#" class="simg img-fluid" src="{{asset('images/product')}}/{{$products->image3}}" onclick="change2();">
-						</div>
+						
+						<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image1}}" alt="im1" onclick="change();">
+					
+						<img id="#" style="margin-top: 15px; margin-left:5px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image2}}" onclick="change1();">
+					
+						<img id="#" style="margin-top: 15px; margin-left:5px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image3}}" onclick="change2();">
+						
 					</div>
 				</div>
 			</div>
@@ -152,7 +150,7 @@
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-10 dvpd m-auto">
-					<a href="">Details</a>
+					{{-- <a href="">Details</a> --}}
 				</div>
 			</div>
 			<div class="row">

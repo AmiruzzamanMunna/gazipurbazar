@@ -122,9 +122,9 @@ Route::get('/search/','UserController@searchItem')->name('user.searchItem');
 
 Route::get('/productDetails/{id}','UserController@productDetails')->name('productDetails');
 
-Route::get('/falcon/aboutus','UserController@aboutUs')->name('user.aboutUs');
-Route::get('/falcon/policy','UserController@policy')->name('user.policy');
-Route::get('/falcon/contact us','UserController@contactus')->name('user.contactus');
+Route::get('/aboutus','UserController@aboutUs')->name('user.aboutUs');
+Route::get('/policy','UserController@policy')->name('user.policy');
+Route::get('/contact-us','UserController@contactus')->name('user.contactus');
 Route::get('/cart','User\CartController@cartIndex')->name('cart.cartIndex');
 Route::post('/cart/add','User\CartController@addCart')->name('cart.addCart');
 

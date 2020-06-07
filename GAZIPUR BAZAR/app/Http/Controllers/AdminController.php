@@ -1094,13 +1094,14 @@ class AdminController extends Controller
     }
     public function policyUpdate(Request $request,$id)
     {
-        $events=Policy::find($request->id);
-        $events->heading=$request->heading;
-        $events->paragraph=$request->paragraph;
-        $events->save();
 
-        $request->session()->flash('message','Data Updated');
-        return back();
+      $events=Policy::find($request->id);
+      $events->heading=$request->heading;
+      $events->paragraph=$request->paragraph;
+      $events->save();
+
+      $request->session()->flash('message','Data Updated');
+      return back();
     }
     public function contactUsEdit(Request $request,$id)
     {

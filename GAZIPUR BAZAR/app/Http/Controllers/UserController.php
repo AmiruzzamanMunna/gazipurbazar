@@ -1246,48 +1246,73 @@ class UserController extends Controller
     }
     public function aboutUs(Request $request)
     {
-       $users = User::where('id',$request->session()->get('loggedUser'))->get();
-         $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
 
-            $quantity+=$cart->quantity;
+        try{
+
+            $users = User::where('id',$request->session()->get('loggedUser'))->get();
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $footers=ContactUs::all();
+            $footersitem=AboutUS::all();
+            return view('User.footer')
+                ->with('quantity',$quantity) 
+                ->with('footersitem',$footersitem) 
+                ->with('footers',$footers);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
         }
-        $footers=ContactUs::all();
-        $footersitem=AboutUS::all();
-        return view('User.footer')
-            ->with('quantity',$quantity) 
-            ->with('footersitem',$footersitem) 
-            ->with('footers',$footers); 
+         
     }
     public function policy(Request $request)
     {
-       $users = User::where('id',$request->session()->get('loggedUser'))->get();
-         $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
+        try{
 
-            $quantity+=$cart->quantity;
+            $users = User::where('id',$request->session()->get('loggedUser'))->get();
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $footers=ContactUs::all();
+            $footersitem=Policy::all();
+            return view('User.footer')
+                ->with('quantity',$quantity) 
+                ->with('footersitem',$footersitem)
+                ->with('footers',$footers);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
+
         }
-        $footers=ContactUs::all();
-        $footersitem=Policy::all();
-        return view('User.footer')
-            ->with('quantity',$quantity) 
-            ->with('footersitem',$footersitem)
-            ->with('footers',$footers); 
     }
     public function contactus(Request $request)
     {
-       $users = User::where('id',$request->session()->get('loggedUser'))->get();
-         $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
+        try{
 
-            $quantity+=$cart->quantity;
+            $users = User::where('id',$request->session()->get('loggedUser'))->get();
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $footers=ContactUs::all();
+            return view('User.contact')
+                ->with('quantity',$quantity) 
+                ->with('footers',$footers);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
+
         }
-        $footers=ContactUs::all();
-        return view('User.contact')
-            ->with('quantity',$quantity) 
-            ->with('footers',$footers); 
     }
 }
