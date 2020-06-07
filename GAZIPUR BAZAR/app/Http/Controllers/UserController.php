@@ -1161,21 +1161,29 @@ class UserController extends Controller
     }
     public function productDetails(Request $request,$id)
     {
-        $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
+        try{
 
-            $quantity+=$cart->quantity;
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $footers=ContactUs::all();
+            $products=DB::table('view_product')
+            ->where('id',$id)->first();
+            $sizes = json_decode($products->size);
+            return view('User.product-details')
+            ->with('quantity',$quantity)
+            ->with('products',$products)
+            ->with('footers',$footers)
+            ->with('sizes',$sizes);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
+
         }
-        $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('id',$id)->first();
-        $sizes = json_decode($products->size);
-        return view('User.product-details')
-        ->with('quantity',$quantity)
-        ->with('products',$products)
-        ->with('footers',$footers)
-        ->with('sizes',$sizes);
     }
     public function invoiceIndex(Request $request,$id)
     {

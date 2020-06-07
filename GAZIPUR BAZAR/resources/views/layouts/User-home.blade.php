@@ -18,7 +18,7 @@
 	  @yield('validate')
   
 </head>
-<body>
+<body id="bladeshow">
 	<nav class="navbar navbar-expand-md fixed-top">
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"  aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

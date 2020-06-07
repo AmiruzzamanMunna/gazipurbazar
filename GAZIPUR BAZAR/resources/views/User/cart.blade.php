@@ -138,7 +138,9 @@
 						(response.data.total)?
 						$("#total").html('Total Price:'+response.data.total+' Tk')	
 						:
-						$("#total").html('Total Price:'+0+' Tk')
+						$("#total").html('Total Price:'+0+' Tk'),
+
+						(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error)
 						
 					});
 					
@@ -159,7 +161,8 @@
 
 						$("#upname").val(response.data.data.productname),
 						$("#upquantity").val(response.data.data.quantity),
-						$("#avail").html('<label> (Available-'+response.data.available.quantity+')</label>')
+						$("#avail").html('<label> (Available-'+response.data.available.quantity+')</label>'),
+						(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error)
 					});
 				},
 				cartSave:function(){
@@ -172,6 +175,9 @@
 					axios.post('/cart/update',{
 						id:id,
 						upquantity:upquantity,
+					}).then(response=>{
+
+						(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error)
 					});
 
 					$('#exampleModal').modal('hide');
@@ -183,7 +189,8 @@
 					console.log(id);
 					axios.post('/cart/remove',{id:id}).then(response=>{
 						$(".cartVal").html(response.data.data),
-						$("#total").html('Total Price:'+response.data.total+' Tk')
+						$("#total").html('Total Price:'+response.data.total+' Tk'),
+						(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error)
 					});
 					this.getAllCart();
 				}

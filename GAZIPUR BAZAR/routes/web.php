@@ -125,8 +125,8 @@ Route::get('/productDetails/{id}','UserController@productDetails')->name('produc
 Route::get('/falcon/aboutus','UserController@aboutUs')->name('user.aboutUs');
 Route::get('/falcon/policy','UserController@policy')->name('user.policy');
 Route::get('/falcon/contact us','UserController@contactus')->name('user.contactus');
-Route::get('/cart','CartController@cartIndex')->name('cart.cartIndex');
-Route::post('/cart/add','CartController@addCart')->name('cart.addCart');
+Route::get('/cart','User\CartController@cartIndex')->name('cart.cartIndex');
+Route::post('/cart/add','User\CartController@addCart')->name('cart.addCart');
 
 Route::group(['middleware'=>['userSess']],function(){
 
@@ -136,14 +136,14 @@ Route::group(['middleware'=>['userSess']],function(){
 
 	
 	
-	Route::get('/cart/getAllCart','CartController@getAllCart')->name('cart.getAllCart');
+	Route::get('/cart/getAllCart','User\CartController@getAllCart')->name('cart.getAllCart');
 
-	Route::post('/cart/edit','CartController@cartEdit')->name('cart.cartEdit');
-	Route::post('/cart/update','CartController@cartUpdate')->name('cart.cartUpdate');
-	Route::post('/cart/remove','CartController@cartRemove')->name('cart.cartRemove');
+	Route::post('/cart/edit','User\CartController@cartEdit')->name('cart.cartEdit');
+	Route::post('/cart/update','User\CartController@cartUpdate')->name('cart.cartUpdate');
+	Route::post('/cart/remove','User\CartController@cartRemove')->name('cart.cartRemove');
 
-	Route::get('/checkout','OrderController@checkOut')->name('order.checkOut');
-	Route::post('/checkout','OrderController@checkOutStore')->name('order.checkOutStore');
+	Route::get('/checkout','User\CheckOutController@checkOut')->name('order.checkOut');
+	Route::post('/checkout','User\CheckOutController@checkOutStore')->name('order.checkOutStore');
 
 	Route::get('/invoice/{id}','UserController@invoiceIndex')->name('user.invoice');
 	Route::get('/download/{id}','PdfController@pdfdownload')->name('pdf.pdfdownload');

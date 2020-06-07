@@ -217,7 +217,11 @@
 					'productname':productname,
 					'product_size':product_size,
 					'quantity':quantity,
-				}).then(({data})=>(data.status=='login')?location.replace("{{route('user.login')}}"):$(".cartVal").html(data));
+				}).then(response=>{
+
+					(response.data.status=='login')?location.replace("{{route('user.login')}}"):$(".cartVal").html(response.data),
+					(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error)
+				});
 
 			},
 			addNum:function(){
