@@ -138,6 +138,9 @@
 					<div class="itemelement">
 						<p class="footeritem"><a href="{{route('user.contactus')}}" class="linkcolor">Contact Us</a></p>
 					</div>
+					<div class="itemelement">
+						<p style="color: black;margin-left:75px">Follow Us on -&nbsp;<a target="_blank" href="https://www.facebook.com/2marshop-113692250340726/" class="linkcolor"><i class="fab fa-facebook-square fa-2x"></i></a></p>
+					</div>
 				</div>
 				<div class="col-md-4 col-sm-6">
 					<div class="col-md-8 m-auto">
