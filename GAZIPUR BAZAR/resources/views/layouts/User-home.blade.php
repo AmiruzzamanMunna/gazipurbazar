@@ -85,7 +85,7 @@
  				<li class="nav-item dropdown">
  					<a href="" class="nav-link dropdown-toggle droplink" data-toggle="dropdown">Account</a>
  					<div class="dropdown-menu">
- 						<a class="dropdown-item dropitem" href="{{route('user.userAccount')}}">Profile</a><a class="dropdown-item dropitem" href="{{route('user.logout')}}">Logout</a>
+ 						<a class="dropdown-item dropitem" target="_blank" href="{{route('user.userAccount')}}">Profile</a><a class="dropdown-item dropitem" href="{{route('user.logout')}}">Logout</a>
  					</div>
  				</li>
  				@else

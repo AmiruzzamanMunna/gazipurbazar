@@ -1717,7 +1717,7 @@ Left Navigation Sidebar
     padding-left: 12px;
     padding-right: 12px;
     /* margin-top: 5px; */
-    background: #24274a;
+    background: #e2e2eb;
 }
 
 .nav-left-sidebar .submenu .nav .nav-item .nav-link {
@@ -1781,7 +1781,7 @@ Leftsidebar - Primary
 
 .sidebar-primary.nav-left-sidebar .navbar-nav .nav-link:focus,
 .sidebar-primary.nav-left-sidebar .navbar-nav .nav-link:hover {
-    color: #fff;
+    color: rgb(14, 13, 13);
     background-color: #5761c2;
     border-radius: 2px;
 }
@@ -1789,12 +1789,12 @@ Leftsidebar - Primary
 .sidebar-primary.nav-left-sidebar .navbar-nav .nav-link:focus,
 .sidebar-primary.nav-left-sidebar .navbar-nav .nav-link.active {
     background-color: #5761c2;
-    color: #fff;
+    color: rgb(14, 13, 13);
     border-radius: 2px;
 }
 
 .sidebar-primary.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
-    color: #fff;
+    color: rgb(14, 13, 13);
     border-radius: 2px;
     background-color: transparent;
 }
@@ -1805,7 +1805,7 @@ Leftsidebar - dark
 ------------------------- */
 
 .sidebar-dark {
-    background-color: #0e0c28;
+    background-color: #e2f0fb;
     -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
     box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
     -webkit-transition: all 0.3s ease;
@@ -1829,22 +1829,22 @@ Leftsidebar - dark
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:hover {
-    color: #fff;
-    background-color: #242849;
+    color: rgb(14, 13, 13);
+    background-color: #e2f0fb;
     border-radius: 2px;
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active {
-    background-color: #242849;
-    color: #fff;
+    background-color: #e2f0fb;
+    color: rgb(14, 13, 13);
     border-radius: 2px;
 }
 
 .sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
-    color: #fff;
+    color: rgb(14, 13, 13);
     border-radius: 2px;
-    background-color: #242849;
+    background-color: #e2f0fb;
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-item .badge{

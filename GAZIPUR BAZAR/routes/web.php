@@ -132,7 +132,7 @@ Route::group(['middleware'=>['userSess']],function(){
 
 	Route::get('/logout','User\UserLoginController@logout')->name('user.logout');
 
-	Route::get('/account','UserController@userAccount')->name('user.userAccount');
+	Route::get('/account','User\ProfileController@userAccount')->name('user.userAccount');
 
 	
 	

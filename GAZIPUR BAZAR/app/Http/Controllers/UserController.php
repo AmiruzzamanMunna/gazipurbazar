@@ -1211,24 +1211,7 @@ class UserController extends Controller
             ->with('id',$id)
             ->with('quantity',$quantity);
     }
-    public function userAccount(Request $request)
-    {
-        $users = User::where('id',$request->session()->get('loggedUser'))->get();
-         $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
-
-            $quantity+=$cart->quantity;
-        }
-        $footers=ContactUs::all();
-        $orders=DB::table('view_order')
-                    ->where('user_id',$request->session()->get('loggedUser'))->get();
-        return view('User.account')
-            ->with('quantity',$quantity)
-            ->with('footers',$footers)
-            ->with('users',$users)
-            ->with('orders',$orders);
-    }
+    
     public function customerOrder(Request $request,$id)
     {
         $users = User::where('id',$request->session()->get('loggedUser'))->get();

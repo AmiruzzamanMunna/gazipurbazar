@@ -53,55 +53,48 @@
 	</a>
 	  
 </div>
+
 <div class="row" style="margin-top: 20px">
-	<div class="col-md-12 col-sm-12">
+	<div class="col-md-12 col-sm-12 col-lg-12 col-sm-12">
 		<div class="row">
 				
-			<div class="col-md-6 col-sm-4 m-auto">
+			<div class="col-md-2 col-sm-2 m-auto">
 				<div class="col-md-8 col-sm-6 section-item-name m-auto">
 					<a class="m-auto" href="{{route('user.groceries','food-groceries')}}">Groceries</a>
 				</div>
-				<div class="itemcontain">
-					<a href="{{route('user.groceries','food-groceries')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-1.jpg"></a>
+				<div class="itemcontain m-auto">
+					<a href="{{route('user.groceries','food-groceries')}}"><img class="img-fluid img-thumbnail" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-1.jpg"></a>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-4 m-auto">
-				<div class="col-md-7 col-sm-6 section-item-name m-auto">
-					<a class="m-auto" href="{{route('user.breadBakery','food-bread&bakery')}}">Bread & Bakery</a>
-				</div>
-				<div class="itemcontain">
-					<a href="{{route('user.breadBakery','food-bread&bakery')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-2.jpg"></a>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-4 m-auto">
+			<div class="col-md-3 col-sm-3">
 				<div class="col-md-9 col-sm-6 section-item-name m-auto">
 					<a class="m-auto" href="{{route('user.fruitsVegitables','food-fruits&vegitable')}}">Fruits & Vegitables			
 				</div>
-				<div class="itemcontain">
-					<a href="{{route('user.fruitsVegitables','food-fruits&vegitable')}}"><img class="img-fluid" id=itemcontain-img src="{{asset('images/uploads')}}/1551274014foodindex-3.jpg"></a>
+				<div class="itemcontain m-auto">
+					<a href="{{route('user.fruitsVegitables','food-fruits&vegitable')}}"><img class="img-fluid img-thumbnail" id=itemcontain-img src="{{asset('images/uploads')}}/1551274014foodindex-3.jpg"></a>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-4 m-auto">
+			<div class="col-md-3 col-sm-3">
 				<div class="col-md-7 col-sm-6 section-item-name m-auto">
 					<a class="m-auto" href="{{route('user.meatFish','food-meat&fish')}}">Meat & Fish</a>
 				</div>
-				<div class="itemcontain">
-					<a href="{{route('user.meatFish','food-meat&fish')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-4.jpg"></a>
+				<div class="itemcontain m-auto">
+					<a href="{{route('user.meatFish','food-meat&fish')}}"><img class="img-fluid img-thumbnail" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-4.jpg"></a>
 				</div>
 			</div>
-			<div class="col-md-11 col-sm-4 m-auto">
+			<div class="col-md-3 col-sm-3">
 				<div class="col-md-11 col-sm-6 section-item-name m-auto">
 					<a class="m-auto" href="{{route('user.freshMilk','food-freshmilk')}}">Fresh Dairy Milk</a>
 				</div>
-				<div class="itemcontain">
-					<a href="{{route('user.freshMilk','food-freshmilk')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-5.jpg"></a>
+				<div class="itemcontain m-auto">
+					<a href="{{route('user.freshMilk','food-freshmilk')}}"><img class="img-fluid img-thumbnail" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-5.jpg"></a>
 				</div>
 			</div>
 			
 		</div>
 	</div>
 </div>
-{{-- <div class="container">
+<div class="container">
 	<div class="row wrapperelement">
 		<div class="col-md-9 col-sm-12 ml-auto">
 			<h1 class="contain-head">Men's clothing Collection</h1>
@@ -228,7 +221,7 @@
 		    @endforelse
 		</div>
 	</div>
-</div> --}}
+</div>
 @section('vue')
 
 <script>

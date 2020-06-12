@@ -131,8 +131,8 @@
 }
 .itemcontain{
 	color: black;
-	width: 320px;
-	height: 270px;
+	width: 200px;
+	height: 220px;
 	background-color: #fafafa;
 	margin-top:10px;
 	margin-left: 22px;
@@ -144,8 +144,8 @@
 	color: black;
 }
 #itemcontain-img{
-	width: 310px;
-	height: 250px;
+	width: 200px;
+	height: 200px;
 }
 .productwrapper{
 	margin-top: 90px;
@@ -262,8 +262,7 @@ a:hover{
 .carousel-inner img {
 	
 	margin-top: 91px;	
-	width: 1350px;
-	/* height: 600px; */
+	
 }
 .contain{
 	margin-top: 50px;
