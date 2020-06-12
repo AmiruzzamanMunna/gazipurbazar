@@ -30,7 +30,7 @@ class UserSendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('Laravel@email.com')->subject('User Reset Password')
+        return $this->from('2marshop@gmail.com')->subject('User Reset Password')
                                                 ->view('User.userresetlink')
                                                 ->with('data',$this->data);
     }

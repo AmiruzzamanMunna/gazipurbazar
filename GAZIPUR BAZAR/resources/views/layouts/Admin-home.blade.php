@@ -17,7 +17,7 @@
 <body>
     @if(Session::has('loggedAdmin'))
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="{{route('admin.index')}}">Gazipur Bazar</a>
+        <a class="navbar-brand" href="{{route('admin.index')}}">2marshop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,6 +47,13 @@
         </div>
         <ul>
             <li class="nav-item"><a class="nav-link" href="{{route('order.orderShow')}}">Order</a></li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#demo16" href="#">Page Index<i id="listicon" class="fa fa-caret-down"></i></a>
+                <div class="collapse" id="demo16">
+                    <a href="{{route('admin.pageIndex')}}" class="nav-link">Add Page Index Image</a>
+                    <a href="{{route('product.viewAllproduct')}}" class="nav-link">View Product</a>
+                </div>
+            </li>
              <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#demo15" href="#">Product<i id="listicon" class="fa fa-caret-down"></i></a>
                 <div class="collapse" id="demo15">

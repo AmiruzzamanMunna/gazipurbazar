@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,6 @@ use Exception;
 
 class OrderController extends Controller
 {
-    
     public function orderShow(Request $request)
     {
         $admins=Admin::all();

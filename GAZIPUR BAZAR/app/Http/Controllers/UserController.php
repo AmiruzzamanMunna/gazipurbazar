@@ -57,12 +57,15 @@ class UserController extends Controller
             ->where('category_name','ladies clothing')->get();
             $gadgets=DB::table('view_product')
             ->where('category_name','gadget')->get();
+            $events=DB::table('tbl_index')->get();
+            
             return view('User.index')
             ->with('quantity',$quantity)
             ->with('carts',$carts)
             ->with('gents',$gents)
             ->with('ladies',$ladies)
             ->with('footers',$footers)
+            ->with('events',$events)
             ->with('gadgets',$gadgets);
 
         }catch(Exception $e){

@@ -26,7 +26,82 @@
 </script>
 @endsection
 @section('container')
-<div class="container">
+<div id="demo" class="carousel slide imageslide" data-ride="carousel">
+
+	<ul class="carousel-indicators">
+	  <li data-target="#demo" data-slide-to="0" class="active"></li>
+	  <li data-target="#demo" data-slide-to="1"></li>
+	  <li data-target="#demo" data-slide-to="2"></li>
+	</ul>
+
+   <div class="carousel-inner">
+	  @foreach($events as $event)
+		<div class="carousel-item active">
+			<img class="img-fluid slideimage" src="{{asset('images/index')}}/{{$event->image1}}" alt="Los Angeles">
+		</div>
+		<div class="carousel-item">
+			<img class="img-fluid slideimage" src="{{asset('images/index')}}/{{$event->image2}}" alt="Chicago">
+		</div>
+	  @endforeach
+	</div>
+	  
+	<a class="carousel-control-prev" href="#demo" data-slide="prev">
+	<span class="carousel-control-prev-icon"></span>
+	</a>
+	<a class="carousel-control-next" href="#demo" data-slide="next">
+	<span class="carousel-control-next-icon"></span>
+	</a>
+	  
+</div>
+<div class="row" style="margin-top: 20px">
+	<div class="col-md-12 col-sm-12">
+		<div class="row">
+				
+			<div class="col-md-6 col-sm-4 m-auto">
+				<div class="col-md-8 col-sm-6 section-item-name m-auto">
+					<a class="m-auto" href="{{route('user.groceries','food-groceries')}}">Groceries</a>
+				</div>
+				<div class="itemcontain">
+					<a href="{{route('user.groceries','food-groceries')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-1.jpg"></a>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 m-auto">
+				<div class="col-md-7 col-sm-6 section-item-name m-auto">
+					<a class="m-auto" href="{{route('user.breadBakery','food-bread&bakery')}}">Bread & Bakery</a>
+				</div>
+				<div class="itemcontain">
+					<a href="{{route('user.breadBakery','food-bread&bakery')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-2.jpg"></a>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-4 m-auto">
+				<div class="col-md-9 col-sm-6 section-item-name m-auto">
+					<a class="m-auto" href="{{route('user.fruitsVegitables','food-fruits&vegitable')}}">Fruits & Vegitables			
+				</div>
+				<div class="itemcontain">
+					<a href="{{route('user.fruitsVegitables','food-fruits&vegitable')}}"><img class="img-fluid" id=itemcontain-img src="{{asset('images/uploads')}}/1551274014foodindex-3.jpg"></a>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 m-auto">
+				<div class="col-md-7 col-sm-6 section-item-name m-auto">
+					<a class="m-auto" href="{{route('user.meatFish','food-meat&fish')}}">Meat & Fish</a>
+				</div>
+				<div class="itemcontain">
+					<a href="{{route('user.meatFish','food-meat&fish')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-4.jpg"></a>
+				</div>
+			</div>
+			<div class="col-md-11 col-sm-4 m-auto">
+				<div class="col-md-11 col-sm-6 section-item-name m-auto">
+					<a class="m-auto" href="{{route('user.freshMilk','food-freshmilk')}}">Fresh Dairy Milk</a>
+				</div>
+				<div class="itemcontain">
+					<a href="{{route('user.freshMilk','food-freshmilk')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/1551258878foodindex-5.jpg"></a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+{{-- <div class="container">
 	<div class="row wrapperelement">
 		<div class="col-md-9 col-sm-12 ml-auto">
 			<h1 class="contain-head">Men's clothing Collection</h1>
@@ -153,7 +228,7 @@
 		    @endforelse
 		</div>
 	</div>
-</div>
+</div> --}}
 @section('vue')
 
 <script>

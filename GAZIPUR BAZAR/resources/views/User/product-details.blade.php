@@ -107,7 +107,8 @@
 											</div>
 											<div class="form-group row">
 												<label class="lbl">Quantity &nbsp;&nbsp;:</label>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" class="form-control col-3" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" class="form-control col-2" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
+												<div id='msg'></div>
 											</div>
 											<div class=" form-group row">
 												<div class="col-md-12">
@@ -188,6 +189,8 @@
 
 <script>
 
+
+
 	var app=new Vue({
 
 		el:"#addcart",
@@ -217,8 +220,12 @@
 					'quantity':quantity,
 				}).then(response=>{
 
-					(response.data.status=='login')?location.replace("{{route('user.login')}}"):$(".cartVal").html(response.data),
-					(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error)
+					(response.data.status=='login')?location.replace("{{route('user.login')}}"):$(".cartVal").html(response.data.qnty),
+					(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error),
+					(response.data.status=='qnty')?$("#msg").html('<div style="margin-top:10px" class="alert alert-warning alert-dismissible fade show qnty" role="alert"><strong>Sorry!</strong> Give a Valid Quantity.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'):$(".qnty").show()
+				}).catch(function(e){
+
+					console.log(e);
 				});
 
 			},

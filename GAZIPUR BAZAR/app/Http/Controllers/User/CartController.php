@@ -87,7 +87,7 @@ class CartController extends Controller
 				$request->session()->flash('message','Sorry ! You Need to login');
 				return response()->json(array('status'=>'login'));
 			}
-			$quantity=0;
+			
 			$product=Product::find($request->product_id);
 			$cart= new Cart();
 			$cart->user_id= $user;
@@ -104,9 +104,16 @@ class CartController extends Controller
 				$cart->quantity = $request->quantity;
 			}
 			else{
+
+				$carts=Cart::where('user_id',$user)->get();
+
+				$quantity=0;
+				foreach($carts as $cart){
+					
+					$quantity+=$cart->quantity;
+				}
 	
-				$request->session()->flash('message','Sorry ! Product is Out of Stock');
-				return back();
+				return response()->json(array('status'=>'qnty','qnty'=>$quantity));
 			}
 			
 			
@@ -128,7 +135,7 @@ class CartController extends Controller
 				
 				$quantity+=$cart->quantity;
 			}
-			return response()->json($quantity);
+			return response()->json(array('qnty'=>$quantity));
 
 		}catch(Exception $e){
 

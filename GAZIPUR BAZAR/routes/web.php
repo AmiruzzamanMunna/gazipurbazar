@@ -179,6 +179,10 @@ Route::group(['middleware'=>['adminSess']],function(){
 
 	Route::get('/admin/home','AdminController@index')->name('admin.index');
 
+
+	Route::get('/admin/pageIndex','Admin\PageIndexController@pageIndex')->name('admin.pageIndex');
+	Route::post('/admin/pageIndex','Admin\PageIndexController@pageIndexAdd')->name('admin.pageIndexAdd');
+
 	Route::get('/admin/ladies-index/{id}','AdminController@ladiesIndexEdit')->name('admin.ladiesIndexEdit');
 	Route::post('/admin/ladies-index/{id}','AdminController@ladiesIndexUpdate')->name('admin.ladiesIndexUpdate');
 
@@ -251,23 +255,23 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::get('/admin/contactusedit/{id}','AdminController@contactUsEdit')->name('admin.contactUsEdit');
 	Route::post('/admin/contactusedit/{id}','AdminController@contactUsUpdate')->name('admin.contactUsUpdate');
 
-	Route::get('/admin/product/new','ProductController@index')->name('product.index');
-	Route::post('/admin/product/new','ProductController@productStore')->name('product.productStore');
-	Route::get('/admin/viewproduct','ProductController@viewAllproduct')->name('product.viewAllproduct');
-	Route::get('/admin/productedit/{id}','ProductController@productEdit')->name('product.productEdit');
-	Route::post('/admin/productedit/{id}','ProductController@editProductStore')->name('product.editProductStore');
-	Route::get('/admin/productdelete/{id}','ProductController@deleteProduct')->name('product.deleteProduct');
+	Route::get('/admin/product/new','Admin\ProductController@index')->name('product.index');
+	Route::post('/admin/product/new','Admin\ProductController@productStore')->name('product.productStore');
+	Route::get('/admin/viewproduct','Admin\ProductController@viewAllproduct')->name('product.viewAllproduct');
+	Route::get('/admin/productedit/{id}','Admin\ProductController@productEdit')->name('product.productEdit');
+	Route::post('/admin/productedit/{id}','Admin\ProductController@editProductStore')->name('product.editProductStore');
+	Route::get('/admin/productdelete/{id}','Admin\ProductController@deleteProduct')->name('product.deleteProduct');
 
-	Route::get('/admin/order','OrderController@orderShow')->name('order.orderShow');
-	Route::get('/admin/orderinfo/{id}','OrderController@orderInfoShow')->name('order.orderInfoShow');
+	Route::get('/admin/order','Admin\OrderController@orderShow')->name('order.orderShow');
+	Route::get('/admin/orderinfo/{id}','Admin\OrderController@orderInfoShow')->name('order.orderInfoShow');
 
 	Route::get('/order/pending','AdminController@orderPending')->name('admin.orderPending');
 	Route::get('/order/delivered','AdminController@orderDelivered')->name('admin.orderDelivered');
 	Route::get('/order/canceled','AdminController@orderCanceled')->name('admin.orderCanceled');
 
-	Route::get('/admin/statusdelivered/{id}','OrderController@statusdelivered')->name('order.statusdelivered');
-	Route::get('/admin/statusreceived/{id}','OrderController@statusreceived')->name('order.statusreceived');
-	Route::get('/admin/statuscancel/{id}','OrderController@statuscancel')->name('order.statuscancel');
+	Route::get('/admin/statusdelivered/{id}','Admin\OrderController@statusdelivered')->name('order.statusdelivered');
+	Route::get('/admin/statusreceived/{id}','Admin\OrderController@statusreceived')->name('order.statusreceived');
+	Route::get('/admin/statuscancel/{id}','Admin\OrderController@statuscancel')->name('order.statuscancel');
 
 });
 
