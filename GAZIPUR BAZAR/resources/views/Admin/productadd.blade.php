@@ -49,6 +49,18 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label class="col-md-3">Unit:</label>
+							<div class="col-md-8">
+								<select class="form-control" name="unit">
+									<option>Select---</option>
+									<option value="kg">kg</option>
+									<option value="ltr">ltr</option>
+									<option value="gm">gm</option>
+									
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-md-3">Price:</label>
 							<div class="col-md-8">
 								<input type="number" class="form-control" name="price">

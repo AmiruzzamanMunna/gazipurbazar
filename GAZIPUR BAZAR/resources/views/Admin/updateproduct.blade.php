@@ -46,6 +46,40 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label class="col-md-3">Unit:</label>
+							<div class="col-md-8">
+								<select class="form-control" name="unit">
+									<option>Select---</option>
+									@if ($products->unit=='kg')
+
+										<option value="kg" selected>kg</option>
+										<option value="ltr">ltr</option>
+										<option value="gm">gm</option>
+										
+									@elseif($products->unit=='ltr')
+
+										<option value="kg">kg</option>
+										<option value="ltr" selected>ltr</option>
+										<option value="gm">gm</option>
+
+									@elseif($products->unit=='gm')
+
+										<option value="kg">kg</option>
+										<option value="ltr">ltr</option>
+										<option value="gm" selected>gm</option>
+									
+									@else
+										<option value="kg">kg</option>
+										<option value="ltr">ltr</option>
+										<option value="gm">gm</option>
+										
+									@endif
+		
+									
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-md-3">Price:</label>
 							<div class="col-md-8">
 								<input type="number" class="form-control" name="price" value="{{$products->price}}">

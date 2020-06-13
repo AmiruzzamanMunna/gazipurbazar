@@ -83,6 +83,14 @@
 													Out of Stock
 												</label>
 												@endif
+												@if ($products->unit)
+
+												<label class="lbl">
+													({{$products->unit}})
+												</label>
+													
+												@endif
+												
 											</div>
 											@if($products->discount)
 											<div class="form-group row">

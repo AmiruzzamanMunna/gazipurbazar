@@ -31,7 +31,9 @@ use App\GentsIndex;
 use App\LadiesIndex;
 use App\AboutUS;
 use App\Policy;
+use App\Product;
 use App\ContactUs;
+
 use Exception;
 
 
@@ -51,12 +53,19 @@ class UserController extends Controller
                 $quantity+=$cart->quantity;
             }
             $footers=ContactUs::all();
-            $gents=DB::table('view_product')
-            ->where('category_name','gents clothing')->get();
-            $ladies=DB::table('view_product')
-            ->where('category_name','ladies clothing')->get();
-            $gadgets=DB::table('view_product')
-            ->where('category_name','gadget')->get();
+            
+            $gents=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name','gents clothing')
+                        ->get();
+            $ladies=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                            ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                            ->where('category_name','ladies clothing')
+                            ->get();
+            $gadgets=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                            ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                            ->where('category_name','gadget')
+                            ->get();
             $events=DB::table('tbl_index')->get();
             
             return view('User.index')
@@ -84,7 +93,11 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table("view_product")->where('newarrival',1)->get();
+        
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('newarrival',1)
+                        ->get();
         return view('User.allproduct')
             ->with('products',$products)
             ->with('footers',$footers)
@@ -99,7 +112,11 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table("view_product")->where('discount','>','0')->get();
+        
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('discount','>','0')
+                        ->get();
         return view('User.allproduct')
             ->with('products',$products)
             ->with('footers',$footers)
@@ -129,8 +146,11 @@ class UserController extends Controller
 
             $quantity+=$cart->quantity;
         }
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
+        
         $footers=ContactUs::all();
         return view('User.allproduct')
         ->with('footers',$footers)
@@ -146,8 +166,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -162,8 +184,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+        ->where('category_name',$name)
+        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -178,8 +202,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -209,8 +235,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -225,8 +253,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -241,8 +271,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -272,8 +304,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -288,8 +322,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -304,8 +340,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -335,8 +373,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -351,8 +391,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -367,8 +409,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -383,8 +427,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -414,8 +460,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -430,8 +478,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -446,8 +496,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -462,8 +514,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('footers',$footers)
         ->with('quantity',$quantity)
@@ -493,8 +547,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -509,8 +565,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -525,8 +583,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -541,8 +601,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -557,8 +619,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -573,8 +637,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -604,8 +670,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -620,8 +688,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -636,8 +706,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -667,8 +739,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -683,8 +757,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -699,8 +775,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+        ->where('category_name',$name)
+        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -715,8 +793,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -731,8 +811,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -747,8 +829,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -778,8 +862,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -794,8 +880,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -825,8 +913,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -841,8 +931,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -857,8 +949,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -873,8 +967,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -889,8 +985,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -1010,8 +1108,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -1026,8 +1126,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -1042,8 +1144,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('footers',$footers)
         ->with('quantity',$quantity)
@@ -1073,8 +1177,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -1089,8 +1195,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -1120,8 +1228,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -1136,8 +1246,10 @@ class UserController extends Controller
             $quantity+=$cart->quantity;
         }
         $footers=ContactUs::all();
-        $products=DB::table('view_product')
-        ->where('category_name',$name)->get();
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where('category_name',$name)
+                        ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
         ->with('footers',$footers)
@@ -1153,9 +1265,11 @@ class UserController extends Controller
         }
         $footers=ContactUs::all();
         $search=$request->search;
-        $products=DB::table('view_product')
+        $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('product_name','like','%'.$search.'%')
                         ->get();
+        
         return view('User.allproduct')
             ->with('quantity',$quantity)
             ->with('footers',$footers)
@@ -1173,8 +1287,12 @@ class UserController extends Controller
                 $quantity+=$cart->quantity;
             }
             $footers=ContactUs::all();
-            $products=DB::table('view_product')
-            ->where('id',$id)->first();
+            
+            $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->where("tbl_product.id",$id)
+                        ->first();
+          
             $sizes = json_decode($products->size);
             return view('User.product-details')
             ->with('quantity',$quantity)

@@ -50,6 +50,7 @@ class ProductController extends Controller
       $product->category_fk = $request->category;
       $product->size = json_encode($sizes);
       $product->price = $request->price;
+      $product->unit = $request->unit;
       $product->discount = $request->discount;
       $product->quantity = $request->quantity;
       $product->newarrival = $request->newarrival;
@@ -86,8 +87,13 @@ class ProductController extends Controller
     public function viewAllproduct(Request $request)
     {
       $events=EventIndex::all();
-      $products=DB::table('view_product')
-      ->paginate(10);
+      $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                        ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                        ->orderBy('tbl_product.id','desc')
+                        ->paginate(10);
+
+      
+     
       $admins=Admin::all();
       return view('Admin.viewproduct')
         ->with('admins',$admins)
@@ -99,6 +105,7 @@ class ProductController extends Controller
       $catogories=Category::all();
       $products=Product::where('id',$id)
                         ->first();
+    
       $sizes=json_decode($products->size);
       $events=EventIndex::all();
       $admins=Admin::all();

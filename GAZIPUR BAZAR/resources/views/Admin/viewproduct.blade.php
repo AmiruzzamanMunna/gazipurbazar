@@ -45,13 +45,13 @@
 				</div>
 				<div class="card-footer">
 					<div class="row">
-						<dir class="col-md-12">
+						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-5 m-auto">
-									{{$products->links()}}
+									{{$products->appends(Request::all())->links()}}
 								</div>
 							</div>
-						</dir>
+						</div>
 					</div>
 				</div>
 			</div>
