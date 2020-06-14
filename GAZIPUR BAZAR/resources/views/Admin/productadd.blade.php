@@ -56,6 +56,7 @@
 									<option value="kg">kg</option>
 									<option value="ltr">ltr</option>
 									<option value="gm">gm</option>
+									<option value="Piece">Piece</option>
 									
 								</select>
 							</div>

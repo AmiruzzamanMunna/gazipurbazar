@@ -37,33 +37,7 @@ use Exception;
 
 class ProfileController extends Controller
 {
-    public function userAccount(Request $request)
-    {
-
-        try{
-
-            $users = User::where('id',$request->session()->get('loggedUser'))->first();
-            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-            $quantity=0;
-            foreach($carts as $cart){
-
-                $quantity+=$cart->quantity;
-            }
-            $footers=ContactUs::all();
-            $orders=DB::table('view_order')
-                        ->where('user_id',$request->session()->get('loggedUser'))->get();
-            return view('layouts.profile')
-                ->with('quantity',$quantity)
-                ->with('footers',$footers)
-                ->with('users',$users)
-                ->with('orders',$orders);
-
-        }catch(Exception  $e){
-
-            return view('Error.error');
-        }
-        
-    }
+    
     public function todayOrder(Request $request)
     {
         try{
@@ -76,7 +50,7 @@ class ProfileController extends Controller
 
                 $quantity+=$cart->quantity;
             }
-            $date=date('y-m-d');
+            $date=date('Y-m-d');
             
             $footers=ContactUs::all();
             $orders=DB::select("

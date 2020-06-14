@@ -87,10 +87,8 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('user.updateProfile')}}">Account Settings</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-sales.html">Sales</a>
-                                        </li>
-                                        <li class="nav-item">
+                                        
+                                        {{-- <li class="nav-item">
                                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
                                             <div id="submenu-1-1" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
@@ -105,7 +103,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </li>

@@ -83,7 +83,7 @@
 													Out of Stock
 												</label>
 												@endif
-												@if ($products->unit)
+												@if ($products->unit!='Select---' && $products->unit!='Piece')
 
 												<label class="lbl">
 													({{$products->unit}})
@@ -113,6 +113,7 @@
 												<label class="lbl">{{$products->price}} TK</label>
 												@endif
 											</div>
+											@if($products->unit!='Piece')
 											<div class="form-group row">
 												<label class="lbl">Quantity &nbsp;&nbsp;:</label>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" class="form-control col-2" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
@@ -128,6 +129,7 @@
 												</div>
 												@endif
 											</div>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -143,12 +145,24 @@
 			<div class="row m-auto">
 				<div class="col-md-11 m-auto">
 					<div class="row m-auto">
+
+						@if ($products->image1)
+							
+							<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image1}}" alt="im1" onclick="change();">
+											
+						@endif
+						@if ($products->image2)
+							
+							<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image2}}" alt="im1" onclick="change();">
+											
+						@endif
+						@if ($products->image3)
+							
+							<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image3}}" alt="im1" onclick="change();">
+											
+						@endif
 						
-						<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image1}}" alt="im1" onclick="change();">
-					
-						<img id="#" style="margin-top: 15px; margin-left:5px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image2}}" onclick="change1();">
-					
-						<img id="#" style="margin-top: 15px; margin-left:5px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image3}}" onclick="change2();">
+						
 						
 					</div>
 				</div>

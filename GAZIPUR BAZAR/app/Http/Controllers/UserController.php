@@ -1419,4 +1419,30 @@ class UserController extends Controller
 
         }
     }
+    public function eidSpecial(Request $request,$name)
+    {
+        try{
+
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $footers=ContactUs::all();
+            $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+                            ->select("*","tbl_product.id as id","tbl_category.id as catid")
+                            ->where('category_name',$name)
+                            ->get();
+            return view('User.allproduct')
+            ->with('quantity',$quantity)
+            ->with('footers',$footers)
+            ->with('products',$products);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
+
+        }
+    }
 }

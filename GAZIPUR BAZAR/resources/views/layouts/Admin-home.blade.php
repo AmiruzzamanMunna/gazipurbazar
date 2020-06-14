@@ -59,6 +59,7 @@
                 <div class="collapse" id="demo15">
                     <a href="{{route('product.index')}}" class="nav-link">Add Product</a>
                     <a href="{{route('product.viewAllproduct')}}" class="nav-link">View Product</a>
+                    <a href="{{route('product.productWiseOrdered')}}" class="nav-link">Product Wise Ordered</a>
                 </div>
             </li>
             <li class="nav-item">

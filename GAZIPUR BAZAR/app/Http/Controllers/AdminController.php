@@ -50,8 +50,16 @@ class AdminController extends Controller
       $admin=Admin::find($request->id);
       $admin->name=$request->name;
       $admin->username=$request->username;
-      $admin->password=Hash::make($request->password);
-      $admin->confirm_password=Hash::make($request->confirm_password);
+      if($request->password){
+
+        $admin->password=Hash::make($request->password);
+
+      }else{
+
+        $admin->password=$request->tokenVal;
+
+      }
+      
       $admin->save();
       $request->session()->flash('message','Data Updated');
       return back();

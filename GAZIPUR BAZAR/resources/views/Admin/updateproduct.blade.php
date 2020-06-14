@@ -1,6 +1,6 @@
 @extends('layouts.Admin-home')
 @section('title')
-	Add Product
+	Edit Product
 @endsection
 @section('script')
 <script src="{{asset('js')}}/script.js"></script>
@@ -33,8 +33,16 @@
 								<select class="form-control" name="category">
 									<option>Select---</option>
 									@foreach($catogories as $catogory)
-										<option value="{{$catogory->id}}">				{{$catogory->category_name}}
-										</option>
+										@if ($products->category_fk==$catogory->id)
+
+										<option value="{{$catogory->id}}" selected>{{$catogory->category_name}}</option>
+											
+										@else
+
+										<option value="{{$catogory->id}}">{{$catogory->category_name}}</option>
+											
+										@endif
+										
 									@endforeach
 								</select>
 							</div>
@@ -55,23 +63,34 @@
 										<option value="kg" selected>kg</option>
 										<option value="ltr">ltr</option>
 										<option value="gm">gm</option>
+										<option value="Piece">Piece</option>
 										
 									@elseif($products->unit=='ltr')
 
 										<option value="kg">kg</option>
 										<option value="ltr" selected>ltr</option>
 										<option value="gm">gm</option>
+										<option value="Piece">Piece</option>
 
 									@elseif($products->unit=='gm')
 
 										<option value="kg">kg</option>
 										<option value="ltr">ltr</option>
 										<option value="gm" selected>gm</option>
+										<option value="Piece">Piece</option>
 									
-									@else
+									@elseif($products->unit=='Piece')
 										<option value="kg">kg</option>
 										<option value="ltr">ltr</option>
 										<option value="gm">gm</option>
+										<option value="Piece" selected>Piece</option>
+									@else
+
+										<option value="kg">kg</option>
+										<option value="ltr">ltr</option>
+										<option value="gm">gm</option>
+										<option value="Piece">Piece</option>
+
 										
 									@endif
 		

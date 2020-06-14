@@ -35,10 +35,10 @@
 					 <div class="dropdown-menu dropmenu">
 					    <a class="dropdown-item dropitem" href="{{route('user.ladiesIndex')}}">Ladies</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.gentsIndex')}}">Gents</a>
-					    <a class="dropdown-item dropitem" href="{{route('user.leatherIndex')}}">Leather Item</a>
+					    {{-- <a class="dropdown-item dropitem" href="{{route('user.leatherIndex')}}">Leather Item</a> --}}
 					    <a class="dropdown-item dropitem" href="{{route('user.electricIndex')}}">Electric & Electronics</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.gadgetPage','gadget')}}">Gadget</a>
-					    <a class="dropdown-item dropitem" href="{{route('user.houseHoldIndex')}}">Household Accessories</a>
+					    {{-- <a class="dropdown-item dropitem" href="{{route('user.houseHoldIndex')}}">Household Accessories</a> --}}
 					    <a class="dropdown-item dropitem" href="{{route('user.furnitureIndex')}}">Furniture</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.toysShowIndex')}}">Toys & Show Pieces</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.giftIndex','gifts')}}">Gift Items</a>
@@ -50,6 +50,7 @@
 					    <a class="dropdown-item dropitem" href="{{route('user.famousTradionalIndex')}}">Famous & Traditional Item</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.partsAccessoriesIndex')}}">Parts and Accessories of Bikes & Cars</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.medicineEmergencyIndex')}}">Medicine & Emergency</a>
+					    <a class="dropdown-item dropitem" href="{{route('user.eidSpecial','Eid Special')}}">Eid Special</a>
 				  	</div>
 				</li>
 			</ul>
@@ -85,7 +86,7 @@
  				<li class="nav-item dropdown">
  					<a href="" class="nav-link dropdown-toggle droplink" data-toggle="dropdown">Account</a>
  					<div class="dropdown-menu">
- 						<a class="dropdown-item dropitem" target="_blank" href="{{route('user.userAccount')}}">Profile</a><a class="dropdown-item dropitem" href="{{route('user.logout')}}">Logout</a>
+ 						<a class="dropdown-item dropitem" target="_blank" href="{{route('user.updateProfile')}}">Profile</a><a class="dropdown-item dropitem" href="{{route('user.logout')}}">Logout</a>
  					</div>
  				</li>
  				@else

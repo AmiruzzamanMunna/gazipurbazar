@@ -117,6 +117,7 @@ Route::get('/parts&accessories/carspage/{name}', 'UserController@cars')->name('u
 Route::get('/medicineEmergency-Index', 'UserController@medicineEmergencyIndex')->name('user.medicineEmergencyIndex');
 Route::get('/medicineEmergency/medicinepage/{name}', 'UserController@medicine')->name('user.medicine');
 Route::get('/medicineEmergency/fastaidkitpage/{name}', 'UserController@fastAidKit')->name('user.fastAidKit');
+Route::get('/eidSpecial/{name}', 'UserController@eidSpecial')->name('user.eidSpecial');
 
 Route::get('/search/','UserController@searchItem')->name('user.searchItem');
 
@@ -131,8 +132,6 @@ Route::post('/cart/add','User\CartController@addCart')->name('cart.addCart');
 Route::group(['middleware'=>['userSess']],function(){
 
 	Route::get('/logout','User\UserLoginController@logout')->name('user.logout');
-
-	Route::get('/account','User\ProfileController@userAccount')->name('user.userAccount');
 
 	
 	
@@ -176,7 +175,7 @@ Route::post('/password/reset/{token}','PasswordResetController@resetPass')->name
 
 Route::group(['middleware'=>['adminSess']],function(){
 
-	Route::get('/admin/logout','AdminController@logOut')->name('admin.logOut');
+	Route::get('/admin/logout','Admin\AdminLoginController@logOut')->name('admin.logOut');
 
 	Route::get('/admin/edit/{id}','AdminController@adminEdit')->name('admin.edit');
 	Route::post('/admin/edit/{id}','AdminController@adminUpdate')->name('adminUpdate');
@@ -265,6 +264,7 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::get('/admin/productedit/{id}','Admin\ProductController@productEdit')->name('product.productEdit');
 	Route::post('/admin/productedit/{id}','Admin\ProductController@editProductStore')->name('product.editProductStore');
 	Route::get('/admin/productdelete/{id}','Admin\ProductController@deleteProduct')->name('product.deleteProduct');
+	Route::get('/admin/productWiseOrdered','Admin\ProductController@productWiseOrdered')->name('product.productWiseOrdered');
 
 	Route::get('/admin/order','Admin\OrderController@orderShow')->name('order.orderShow');
 	Route::get('/admin/orderinfo/{id}','Admin\OrderController@orderInfoShow')->name('order.orderInfoShow');

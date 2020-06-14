@@ -133,6 +133,7 @@ class ProductController extends Controller
       $product->discount = $request->discount;
       $product->quantity = $request->quantity;
       $product->newarrival = $request->newarrival;
+      $product->unit = $request->unit;
       if ($request->hasFile('image1')) {
         $image1 = $request->file('image1');
         $filename1 = time() . 'product-1.' . $image1->getClientOriginalExtension();
@@ -168,5 +169,26 @@ class ProductController extends Controller
       $product=Product::find($request->id);
       $product->delete();
       return redirect()->route('product.viewAllproduct');
+    }
+    public function productWiseOrdered(Request $request)
+    {
+      $admins=Admin::all();
+      $datas=DB::select("
+            SELECT 
+          tbl_product.id as id,
+          product_name,
+          image1,
+          COUNT(cart_product_id) AS productOrdered
+      FROM
+          tbl_product
+              LEFT JOIN
+          tbl_order ON tbl_order.cart_product_id = tbl_product.id
+      GROUP BY tbl_product.id
+      ");
+      $events=EventIndex::all();
+      return view('Admin.productwise')
+            ->with('events',$events)
+            ->with('datas',$datas)
+            ->with('admins',$admins);
     }
 }
