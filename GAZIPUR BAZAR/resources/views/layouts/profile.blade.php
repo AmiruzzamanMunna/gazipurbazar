@@ -39,7 +39,7 @@
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top" style="background-color: #e2f0fb">
                 <a href="{{route('user.index')}}" class="navbar-brand droplink m-auto">
-                    <img src="{{asset('images/2mar')}}/2marshop.svg" style="max-width: 50px;max-height:50px">2marShop
+                    <img src="{{asset('images/2mar')}}/2marshop.svg" style="max-width: 60px;max-height:50px">2marShop
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -83,27 +83,9 @@
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Account <span class="badge badge-success">6</span></a>
                                 <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
+                                        
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">E-Commerce</a>
-                                            <div id="submenu-1-2" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="index.html">E Commerce Dashboard</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product.html">Product List</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product-single.html">Product Single</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product-checkout.html">Product Checkout</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-finance.html">Finance</a>
+                                            <a class="nav-link" href="{{route('user.updateProfile')}}">Account Settings</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="dashboard-sales.html">Sales</a>
@@ -132,17 +114,12 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Brand <span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="{{route('user.todayOrder')}}">Today's Order <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Category</a>
+                                            <a class="nav-link" href="{{route('user.orderHistory')}}">Order History</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">Producer Company</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">Product Details</a>
-                                        </li>
+                                        
                                         
                                     </ul>
                                 </div>

@@ -26,7 +26,7 @@
 						<div class="form-group row">
 							<label class="col-md-3">Mobile No 2:</label>
 							<div class="col-md-8">
-								<input type="number" class="form-control" name="mobile2">
+								<input type="number" class="form-control" name="mobile2" value="{{$user->mobile2}}">
 							</div>
 						</div>
 						<div class="form-group row">

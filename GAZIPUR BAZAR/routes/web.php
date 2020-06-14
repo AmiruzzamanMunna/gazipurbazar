@@ -149,6 +149,10 @@ Route::group(['middleware'=>['userSess']],function(){
 	Route::get('/download/{id}','PdfController@pdfdownload')->name('pdf.pdfdownload');
 
 	Route::get('/orderDetails/{id}','UserController@customerOrder')->name('user.customerOrder');
+	Route::get('/todayOrder','User\ProfileController@todayOrder')->name('user.todayOrder');
+	Route::get('/orderHistory','User\ProfileController@orderHistory')->name('user.orderHistory');
+	Route::get('/updateProfile','User\ProfileController@updateProfile')->name('user.updateProfile');
+	Route::post('/updateProfile','User\ProfileController@updateProfileUpdate')->name('user.updateProfileUpdate');
 
 });
 

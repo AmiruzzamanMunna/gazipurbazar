@@ -43,6 +43,12 @@
 										</div>
 									</div>
 									<div class="form-group row">
+										<label class="col-md-4">Mobile2:</label>
+										<div class="col-md-8">
+											<input type="text" name="mobile2" class="form-control">
+										</div>
+									</div>
+									<div class="form-group row">
 										<label class="col-md-4">Address:</label>
 										<div class="col-md-8">
 											<input type="text" name="address" class="form-control">
@@ -60,13 +66,15 @@
 											<input type="password" name="confirm_password" class="form-control">
 										</div>
 									</div>
-									@if($errors->any())
-										<ul>
-											@foreach($errors->all() as $error)
-												<li>{{$error}}</li>
-											@endforeach
-										</ul>
-									@endif
+									<div class="error">
+										@if($errors->any())
+											<ul>
+												@foreach($errors->all() as $error)
+													<li>{{$error}}</li>
+												@endforeach
+											</ul>
+										@endif
+									</div>
 									<div class="row">
 										<div class="col-md-9">
 											<input type="reset" class="btn btn-primary" name="reset" value="Reset">

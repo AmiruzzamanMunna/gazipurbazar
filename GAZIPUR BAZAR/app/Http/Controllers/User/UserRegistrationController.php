@@ -55,6 +55,7 @@ class UserRegistrationController extends Controller
         $user->name=$request->name;
         $user->email=$request->email;
         $user->mobile=$request->mobile;
+        $user->mobile2=$request->mobile2;
         $user->address=$request->address;
         $user->password=Hash::make($request->password);
         $user->save();
