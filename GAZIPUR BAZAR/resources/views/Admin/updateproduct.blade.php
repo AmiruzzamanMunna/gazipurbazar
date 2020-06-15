@@ -57,7 +57,7 @@
 							<label class="col-md-3">Unit:</label>
 							<div class="col-md-8">
 								<select class="form-control" name="unit">
-									<option>Select---</option>
+									<option value="0">Select---</option>
 									@if ($products->unit=='kg')
 
 										<option value="kg" selected>kg</option>

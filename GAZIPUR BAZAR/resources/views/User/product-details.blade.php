@@ -83,7 +83,7 @@
 													Out of Stock
 												</label>
 												@endif
-												@if ($products->unit!='Select---' && $products->unit!='Piece')
+												@if ($products->unit!='0')
 
 												<label class="lbl">
 													({{$products->unit}})
@@ -113,7 +113,7 @@
 												<label class="lbl">{{$products->price}} TK</label>
 												@endif
 											</div>
-											@if($products->unit!='Piece')
+											@if($products->unit!='0')
 											<div class="form-group row">
 												<label class="lbl">Quantity &nbsp;&nbsp;:</label>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" class="form-control col-2" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>

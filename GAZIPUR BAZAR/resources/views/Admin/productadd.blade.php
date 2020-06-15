@@ -52,7 +52,7 @@
 							<label class="col-md-3">Unit:</label>
 							<div class="col-md-8">
 								<select class="form-control" name="unit">
-									<option>Select---</option>
+									<option value="0">Select---</option>
 									<option value="kg">kg</option>
 									<option value="ltr">ltr</option>
 									<option value="gm">gm</option>
