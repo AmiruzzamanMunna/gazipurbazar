@@ -76,6 +76,7 @@
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover table-striped">
 						<tr>
+							<th>Sl No</th>
 							<th>Customer Name</th>
 							<th>Mobile</th>
 							<th>Address</th>
@@ -83,8 +84,9 @@
 							<th>Status</th>
 							<th>Details</th>
 						</tr>
-						@foreach($orders as $order)
+						@foreach($orders as $key=>$order)
 						<tr>
+							<td>{{$key+1}}</td>
 							<td>{{$order->name}}</td>
 							<td>{{$order->mobile}}</td>
 							<td>{{$order->address}}</td>

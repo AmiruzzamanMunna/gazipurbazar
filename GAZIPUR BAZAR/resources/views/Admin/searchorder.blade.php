@@ -1,6 +1,6 @@
 @extends('layouts.Admin-home')
 @section('title')
-	Order
+	Search Order
 @endsection
 @section('css')
 	
@@ -10,9 +10,26 @@
 @section('container')
 <div class="col-md-8 col-sm-12 m-auto">
 	<div class="row">
+        
 		<div class="col-md-12 col-sm-12 ordercard">
 			<div class="card">
-			<div class="card-header"><h2>All Order</h2></div>
+                <form action="{{route('order.searchOrderResult')}}">
+                    @if ($date)
+
+                    <input type="date" name="search" id="" class="form-control col-md-6" value="{{$date}}">
+                    @else
+                    <input type="date" name="search" id="" class="form-control col-md-6">
+                    @endif
+                    @if ($name)
+
+                    <input type="text" name="name" id="" class="form-control col-md-6" value="{{$name}}">
+                    @else
+                    <input type="text" name="name" id="" class="form-control col-md-6">
+                    @endif
+                    
+                    <input type="submit" name="" id="" class="btn btn-success col-md-6" value="Search">
+                </form>
+			<div class="card-header"><h2>Search Order</h2></div>
 			<div class="card-body col-sm-12">
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover table-striped">
@@ -54,7 +71,7 @@
 					<dir class="col-md-12">
 						<div class="row">
 							<div class="col-md-3 m-auto">
-								{{$orders->links()}}
+								{{$orders->appends(Request::all())->links()}}
 							</div>
 						</div>
 					</dir>

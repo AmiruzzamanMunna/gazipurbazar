@@ -33,6 +33,64 @@ class OrderController extends Controller
             ->with('events',$events)
             ->with('orders',$orders);
     }
+    public function todayOrder(Request $request)
+    {
+        $admins=Admin::all();
+        $events=EventIndex::all();
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->where(DB::raw("Date(Order_date)"),date('Y-m-d'))
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
+        
+        return view('Admin.order')
+            ->with('admins',$admins)
+            ->with('events',$events)
+            ->with('orders',$orders);
+    }
+    public function searchOrder(Request $request)
+    {
+        $admins=Admin::all();
+        $events=EventIndex::all();
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->where(DB::raw("Date(Order_date)"),date('Y-m-d'))
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
+
+        $date=[];
+        $name=[];
+        
+        return view('Admin.searchorder')
+            ->with('admins',$admins)
+            ->with('date',$date)
+            ->with('name',$name)
+            ->with('events',$events)
+            ->with('orders',$orders);
+    }
+    public function searchOrderResult(Request $request)
+    {
+        $date=$request->search;
+        $name=$request->name;
+        $admins=Admin::all();
+        $events=EventIndex::all();
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->where(DB::raw("Date(Order_date)"),$date)
+                    ->orWhere('name','like',"%$name%")
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
+        
+        return view('Admin.searchorder')
+            ->with('date',$date)
+            ->with('name',$name)
+            ->with('admins',$admins)
+            ->with('events',$events)
+            ->with('orders',$orders);
+    }
     public function orderPending(Request $request)
     {
         $events=EventIndex::all();

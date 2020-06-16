@@ -272,6 +272,9 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::get('/admin/productWiseOrdered','Admin\ProductController@productWiseOrdered')->name('product.productWiseOrdered');
 
 	Route::get('/admin/order','Admin\OrderController@orderShow')->name('order.orderShow');
+	Route::get('/admin/todayOrder','Admin\OrderController@todayOrder')->name('order.todayOrder');
+	Route::get('/admin/searchOrder','Admin\OrderController@searchOrder')->name('order.searchOrder');
+	Route::get('/admin/searchOrderResult','Admin\OrderController@searchOrderResult')->name('order.searchOrderResult');
 	Route::get('/admin/orderinfo/{id}','Admin\OrderController@orderInfoShow')->name('order.orderInfoShow');
 
 	Route::get('/order/pending','Admin\OrderController@orderPending')->name('admin.orderPending');

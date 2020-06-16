@@ -19,7 +19,7 @@
   
 </head>
 <body id="bladeshow">
-	<nav class="navbar navbar-expand-md fixed-top">
+	<nav class="navbar navbar-expand-md fixed-top" id="navId">
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"  aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
@@ -32,13 +32,13 @@
 		    <ul class="navbar nav m-auto">
 				<li class="nav-item dropdown">
 					<a href="" class="nav-link dropdown-toggle droplink" data-toggle="dropdown">Department</a>
-					 <div class="dropdown-menu dropmenu">
+					 <div class="dropdown-menu dropmenu" style="max-height:350px;;overflow-y: auto;">
 					    <a class="dropdown-item dropitem" href="{{route('user.ladiesIndex')}}">Ladies</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.gentsIndex')}}">Gents</a>
-					    {{-- <a class="dropdown-item dropitem" href="{{route('user.leatherIndex')}}">Leather Item</a> --}}
+					    <a class="dropdown-item dropitem" href="{{route('user.leatherIndex')}}">Leather Item</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.electricIndex')}}">Electric & Electronics</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.gadgetPage','gadget')}}">Gadget</a>
-					    {{-- <a class="dropdown-item dropitem" href="{{route('user.houseHoldIndex')}}">Household Accessories</a> --}}
+					    <a class="dropdown-item dropitem" href="{{route('user.houseHoldIndex')}}">Household Accessories</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.furnitureIndex')}}">Furniture</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.toysShowIndex')}}">Toys & Show Pieces</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.giftIndex','gifts')}}">Gift Items</a>
