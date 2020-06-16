@@ -15,6 +15,7 @@ use App\Product;
 use App\EventIndex;
 use App\ContactUs;
 use App\User;
+use Redirect;
 use Exception;
 
 class CheckOutController extends Controller
@@ -81,6 +82,9 @@ class CheckOutController extends Controller
     			}
     		}
     	}
-    	return redirect()->route('user.invoice',[$invoice->id]);
+		// return redirect()->route('user.invoice',[$invoice->id]);
+		$request->session()->flash('message','Data Stored');
+		$url=route('user.todayOrder');
+    	return Redirect::away($url);
     }
 }

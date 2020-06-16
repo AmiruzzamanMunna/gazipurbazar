@@ -23,18 +23,94 @@ class OrderController extends Controller
     {
         $admins=Admin::all();
         $events=EventIndex::all();
-        $orders=DB::table('view_invoice')->paginate(10);
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
         return view('Admin.order')
             ->with('admins',$admins)
             ->with('events',$events)
+            ->with('orders',$orders);
+    }
+    public function orderPending(Request $request)
+    {
+        $events=EventIndex::all();
+        $admins=Admin::all();
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->where('status',1)
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
+        return view('Admin.order')
+            ->with('events',$events)
+            ->with('admins',$admins)
+            ->with('orders',$orders);
+    }
+    public function orderdelivered(Request $request)
+    {
+        $events=EventIndex::all();
+        $admins=Admin::all();
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->where('status',2)
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
+        
+        return view('Admin.order')
+            ->with('events',$events)
+            ->with('admins',$admins)
+            ->with('orders',$orders);
+    }
+    public function orderCanceled(Request $request)
+    {
+        $events=EventIndex::all();
+        $admins=Admin::all();
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->where('status',4)
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
+       
+        return view('Admin.order')
+            ->with('events',$events)
+            ->with('admins',$admins)
             ->with('orders',$orders);
     }
     public function orderInfoShow(Request $request,$id)
     {
         $admins=Admin::all();
         $events=EventIndex::all();
-        $orders=DB::table('view_order')
-                ->where('invoice_id',$id)->get();
+        $orders=DB::select("
+
+                    SELECT 
+                    name,
+                    mobile1,
+                    mobile2,
+                    address,
+                    email,
+                    invoice_id,
+                    tbl_order.user_id as user_id,
+                    product_name,
+                    image1,
+                    cart_quantity,
+                    cart_size,
+                    cart_totalprice,
+                    orderdate,
+                    status
+                FROM
+                    tbl_order
+                        LEFT JOIN
+                    tbl_product ON tbl_product.id = tbl_order.cart_product_id
+                        LEFT JOIN
+                    tbl_invoice ON tbl_invoice.id = tbl_order.invoice_id
+                    where invoice_id=$id
+        ");
+        
+        
         return view('Admin.orderinfo')
             ->with('admins',$admins)
             ->with('events',$events)

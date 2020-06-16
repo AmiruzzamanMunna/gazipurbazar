@@ -54,9 +54,9 @@ class UserController extends Controller
             }
             $footers=ContactUs::all();
             
-            $gents=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
+            $fruits=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
-                        ->where('category_name','gents clothing')
+                        ->where('category_name','food-fruits&vegitable')
                         ->get();
             $ladies=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                             ->select("*","tbl_product.id as id","tbl_category.id as catid")
@@ -71,7 +71,7 @@ class UserController extends Controller
             return view('User.index')
             ->with('quantity',$quantity)
             ->with('carts',$carts)
-            ->with('gents',$gents)
+            ->with('fruits',$fruits)
             ->with('ladies',$ladies)
             ->with('footers',$footers)
             ->with('events',$events)

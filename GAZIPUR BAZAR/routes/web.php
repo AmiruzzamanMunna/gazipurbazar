@@ -183,8 +183,13 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::get('/admin/home','AdminController@index')->name('admin.index');
 
 
+	Route::get('/admin/viewPageIndex','Admin\PageIndexController@viewPageIndex')->name('admin.viewPageIndex');
+
 	Route::get('/admin/pageIndex','Admin\PageIndexController@pageIndex')->name('admin.pageIndex');
 	Route::post('/admin/pageIndex','Admin\PageIndexController@pageIndexAdd')->name('admin.pageIndexAdd');
+
+	Route::get('/admin/updatePageIndex/{id}','Admin\PageIndexController@updatePageIndex')->name('admin.updatePageIndex');
+	Route::post('/admin/updatePageIndex/{id}','Admin\PageIndexController@updatePageIndexUpdate')->name('admin.updatePageIndexUpdate');
 
 	Route::get('/admin/ladies-index/{id}','AdminController@ladiesIndexEdit')->name('admin.ladiesIndexEdit');
 	Route::post('/admin/ladies-index/{id}','AdminController@ladiesIndexUpdate')->name('admin.ladiesIndexUpdate');
@@ -269,9 +274,9 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::get('/admin/order','Admin\OrderController@orderShow')->name('order.orderShow');
 	Route::get('/admin/orderinfo/{id}','Admin\OrderController@orderInfoShow')->name('order.orderInfoShow');
 
-	Route::get('/order/pending','AdminController@orderPending')->name('admin.orderPending');
-	Route::get('/order/delivered','AdminController@orderDelivered')->name('admin.orderDelivered');
-	Route::get('/order/canceled','AdminController@orderCanceled')->name('admin.orderCanceled');
+	Route::get('/order/pending','Admin\OrderController@orderPending')->name('admin.orderPending');
+	Route::get('/order/delivered','Admin\OrderController@orderDelivered')->name('admin.orderDelivered');
+	Route::get('/order/canceled','Admin\OrderController@orderCanceled')->name('admin.orderCanceled');
 
 	Route::get('/admin/statusdelivered/{id}','Admin\OrderController@statusdelivered')->name('order.statusdelivered');
 	Route::get('/admin/statusreceived/{id}','Admin\OrderController@statusreceived')->name('order.statusreceived');

@@ -9,7 +9,7 @@
     margin:10,
     nav:false,
     autoplay:true,
-    autoplayTimeout:9000,
+    autoplayTimeout:6000,
     responsiveClass:true,
     responsive:{
         0:{
@@ -97,13 +97,13 @@
 <div class="container">
 	<div class="row wrapperelement">
 		<div class="col-md-9 col-sm-12 ml-auto">
-			<h1 class="contain-head">Men's clothing Collection</h1>
+			<h1 class="contain-head">Popular Products</h1>
 		</div>
 		<div class="owl-carousel owl-theme owlitem"">
 			@php
 				$a=0
 			@endphp
-		    @forelse($gents as $gent)
+		    @forelse($fruits as $gent)
 		    <div class="item">
 		    	@if($gent->discount)
 		    	<div class="discount">
@@ -139,7 +139,7 @@
 		    @endforelse
 		</div>
 	</div>
-	<div class="row">
+	{{-- <div class="row">
 		<div class="col-md-9 col-sm-12 ml-auto">
 			<h1 class="contain-head">Women's clothing Collection</h1>
 		</div>
@@ -220,7 +220,7 @@
 		    <h1>Sorry No Product is Available</h1>
 		    @endforelse
 		</div>
-	</div>
+	</div> --}}
 </div>
 @section('vue')
 

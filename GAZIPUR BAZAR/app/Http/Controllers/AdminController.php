@@ -70,27 +70,29 @@ class AdminController extends Controller
         $current_deliver=0;
         $current_cancel=0;
         $current_pending=0;
-        $orders=DB::table('view_invoice')->get();
+        $orders=DB::table('tbl_invoice')->get();
         foreach ($orders as $order){
             $current_order++;
         }
-        $orders=DB::table('view_invoice')->where('status',1)->get();
+        $orders=DB::table('tbl_invoice')->where('status',1)->get();
         foreach ($orders as $pending){
             $current_pending++;
         }
-        $orders=DB::table('view_invoice')->where('status',2)->get();
+        $orders=DB::table('tbl_invoice')->where('status',2)->get();
         foreach ($orders as $deliver){
             $current_deliver++;
         }
-        $orders=DB::table('view_invoice')->where('status',4)->get();
+        $orders=DB::table('tbl_invoice')->where('status',4)->get();
         foreach ($orders as $cancel){
             $current_cancel++;
         }
         $admins=Admin::all();
         $events=EventIndex::all();
-        $orders=DB::table('view_invoice')
-                ->orderby('id','desc')
-                ->paginate(10);
+        $orders=DB::table('tbl_invoice')
+                    ->leftjoin('tbl_user','tbl_user.id','tbl_invoice.user_id')
+                    ->select("*","tbl_invoice.id as id","tbl_user.id as userID")
+                    ->orderBy('Order_date','desc')
+                    ->paginate(10);
         
     	return view('Admin.index')
             ->with('admins',$admins)
@@ -101,36 +103,7 @@ class AdminController extends Controller
             ->with('orders',$orders)
             ->with('events',$events);
     }
-    public function orderPending(Request $request)
-    {
-        $events=EventIndex::all();
-        $admins=Admin::all();
-        $orders=DB::table('view_invoice')->where('status',1)->paginate(10);
-        return view('Admin.order')
-            ->with('events',$events)
-            ->with('admins',$admins)
-            ->with('orders',$orders);
-    }
-    public function orderdelivered(Request $request)
-    {
-        $events=EventIndex::all();
-        $admins=Admin::all();
-        $orders=DB::table('view_invoice')->where('status',2)->paginate(10);
-        return view('Admin.order')
-            ->with('events',$events)
-            ->with('admins',$admins)
-            ->with('orders',$orders);
-    }
-    public function orderCanceled(Request $request)
-    {
-        $events=EventIndex::all();
-        $admins=Admin::all();
-        $orders=DB::table('view_invoice')->where('status',4)->paginate(10);
-        return view('Admin.order')
-            ->with('events',$events)
-            ->with('admins',$admins)
-            ->with('orders',$orders);
-    }
+    
     public function ladiesIndexEdit(Request $request,$id)
     {
         $events=LadiesIndex::where('id',$id)->get();

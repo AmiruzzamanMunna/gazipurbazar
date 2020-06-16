@@ -32,9 +32,56 @@ class PageIndexController extends Controller
     	->with('events',$events);
         
     }
+    public function viewPageIndex(Request $request)
+    {
+        $events=EventIndex::all();
+    	$catogories=Category::all();
+        $admins=Admin::all();
+        $pages=pageIndex::all();
+    	return view('Admin.viewpage')
+                ->with('admins',$admins)
+                ->with('pages',$pages)
+                ->with('catogories',$catogories)
+                ->with('events',$events);
+    }
     public function pageIndexAdd(Request $request)
     {
         $event=new PageIndex();
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1');
+            $filename1 = time() . 'pageIndex-1.' . $image1->getClientOriginalExtension();
+            $location1 = public_path('images/index');
+            $image1->move($location1, $filename1);
+            // Image::make($image)->resize(800, 400)->save($location);
+            $event->image1 = $filename1;
+        }
+        if ($request->hasFile('image2')) {
+        $image2 = $request->file('image2');
+        $filename2 = time() . 'pageIndex-2.' . $image2->getClientOriginalExtension();
+        $location2 = public_path('images/index');
+        $image2->move($location2, $filename2);
+        // Image::make($image)->resize(800, 400)->save($location);
+        $event->image2 = $filename2;
+        }
+        $event->save();
+        $request->session()->flash('message','Data Inserted');
+        return back();
+    }
+    public function updatePageIndex(Request $request,$id)
+    {
+        $events=EventIndex::all();
+    	$catogories=Category::all();
+        $admins=Admin::all();
+        $pages=pageIndex::where('id',$id)->first();
+    	return view('Admin.updatepageindex')
+                ->with('admins',$admins)
+                ->with('pages',$pages)
+                ->with('catogories',$catogories)
+                ->with('events',$events);
+    }
+    public function updatePageIndexUpdate(Request $request,$id)
+    {
+        $event=PageIndex::find($id);
         if ($request->hasFile('image1')) {
             $image1 = $request->file('image1');
             $filename1 = time() . 'pageIndex-1.' . $image1->getClientOriginalExtension();

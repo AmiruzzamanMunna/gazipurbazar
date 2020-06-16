@@ -85,7 +85,7 @@
 						</tr>
 						@foreach($orders as $order)
 						<tr>
-							<td>{{$order->Username}}</td>
+							<td>{{$order->name}}</td>
 							<td>{{$order->mobile}}</td>
 							<td>{{$order->address}}</td>
 							<td>{{date('h:i:s a d-m-y',strtotime($order->Order_date))}}</td>

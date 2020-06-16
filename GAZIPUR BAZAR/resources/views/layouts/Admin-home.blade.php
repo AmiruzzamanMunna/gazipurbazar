@@ -51,7 +51,7 @@
                 <a class="nav-link" data-toggle="collapse" data-target="#demo16" href="#">Page Index<i id="listicon" class="fa fa-caret-down"></i></a>
                 <div class="collapse" id="demo16">
                     <a href="{{route('admin.pageIndex')}}" class="nav-link">Add Page Index Image</a>
-                    <a href="{{route('product.viewAllproduct')}}" class="nav-link">View Product</a>
+                    <a href="{{route('admin.viewPageIndex')}}" class="nav-link">View Page Image</a>
                 </div>
             </li>
              <li class="nav-item">
