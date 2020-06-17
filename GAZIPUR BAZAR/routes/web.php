@@ -270,6 +270,7 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::post('/admin/productedit/{id}','Admin\ProductController@editProductStore')->name('product.editProductStore');
 	Route::get('/admin/productdelete/{id}','Admin\ProductController@deleteProduct')->name('product.deleteProduct');
 	Route::get('/admin/productWiseOrdered','Admin\ProductController@productWiseOrdered')->name('product.productWiseOrdered');
+	Route::get('/admin/profitReport','Admin\ProductController@profitReport')->name('product.profitReport');
 
 	Route::get('/admin/order','Admin\OrderController@orderShow')->name('order.orderShow');
 	Route::get('/admin/todayOrder','Admin\OrderController@todayOrder')->name('order.todayOrder');

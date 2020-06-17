@@ -105,6 +105,12 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label class="col-md-3">Selling Price:</label>
+							<div class="col-md-8">
+								<input type="number" class="form-control" name="sellingPrice" value="{{$products->sellingPrice}}">
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-md-3">Discount:</label>
 							<div class="col-md-8">
 								<input type="text" class="form-control" name="discount" placeholder="%" value="{{$products->discount}}">

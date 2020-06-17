@@ -46,11 +46,6 @@ class CheckOutController extends Controller
     {
     	$userid=$request->session()->get('loggedUser');
     	$carts=Cart::where('user_id',$userid)->get();
-    	$carttotal=0;
-    	foreach ($carts as $cart) {
-    		
-    		$carttotal+=$cart->total_price;
-    	}
     	$invoice= new Invoice();
     	$invoice->user_id=$userid;
     
@@ -58,6 +53,7 @@ class CheckOutController extends Controller
     	if($invoice->save()>0)
     	{
     		foreach($carts as $cart){
+
     			$order= new Order();
     			$order->name=$request->name;
     			$order->mobile1=$request->mobile1;
@@ -75,8 +71,9 @@ class CheckOutController extends Controller
     			$order->cart_quantity=$cart->quantity;
     			$product->quantity=$product->quantity-$cart->quantity;
     			$product->save();
-    			$order->cart_totalprice=$carttotal;
+    			$order->cart_totalprice=$cart->total_price;
     			if ($order->save()>0) {
+					
     				$cart=Cart::where('user_id',$request->session()->get('loggedUser'))
     							->delete();
     			}

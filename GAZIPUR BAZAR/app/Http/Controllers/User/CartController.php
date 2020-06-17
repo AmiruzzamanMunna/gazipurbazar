@@ -119,10 +119,10 @@ class CartController extends Controller
 			
 			if($product->discount>0){
 				$result=0;
-				$result=$product->price-($product->price*$product->discount/100);
+				$result=$product->sellingPrice-($product->sellingPrice*$product->discount/100);
 				$cart->unit_price=$result;
 			}else{
-				$cart->unit_price=$product->price;
+				$cart->unit_price=$product->sellingPrice;
 			}
 			
 			$cart->total_price=$cart->unit_price*$cart->quantity;

@@ -50,6 +50,7 @@ class ProductController extends Controller
       $product->category_fk = $request->category;
       $product->size = json_encode($sizes);
       $product->price = $request->price;
+      $product->sellingPrice = $request->sellingPrice;
       $product->unit = $request->unit;
       $product->discount = $request->discount;
       $product->quantity = $request->quantity;
@@ -130,6 +131,7 @@ class ProductController extends Controller
       $product->category_fk = $request->category;
       $product->size =($sizes);
       $product->price = $request->price;
+      $product->sellingPrice = $request->sellingPrice;
       $product->discount = $request->discount;
       $product->quantity = $request->quantity;
       $product->newarrival = $request->newarrival;
@@ -187,6 +189,41 @@ class ProductController extends Controller
       ");
       $events=EventIndex::all();
       return view('Admin.productwise')
+            ->with('events',$events)
+            ->with('datas',$datas)
+            ->with('admins',$admins);
+    }
+
+    public function profitReport(Request $request)
+    {
+      $admins=Admin::all();
+      $datas=DB::select("
+
+            SELECT 
+            id,
+            image1,
+            product_name,
+            IFNULL(discount, 0) AS discount,
+            price,
+            totalQuantity,
+            orderTotal,
+            ((orderTotal - (price * totalQuantity)) - (IFNULL(discount, 0) * totalQuantity * price / 100)) AS profit
+        FROM
+            tbl_product
+                LEFT JOIN
+            (SELECT 
+                cart_product_id,
+                    SUM(cart_quantity) AS totalQuantity,
+                    SUM(cart_totalprice) AS orderTotal
+            FROM
+                tbl_order
+            GROUP BY cart_product_id) AS tbl_order ON tbl_order.cart_product_id = tbl_product.id
+        GROUP BY id
+        ORDER BY orderTotal DESC
+      ");
+    
+      $events=EventIndex::all();
+      return view('Report.profit')
             ->with('events',$events)
             ->with('datas',$datas)
             ->with('admins',$admins);

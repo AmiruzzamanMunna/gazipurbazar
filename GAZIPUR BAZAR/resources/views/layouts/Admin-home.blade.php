@@ -68,6 +68,7 @@
                     <a href="{{route('product.index')}}" class="nav-link">Add Product</a>
                     <a href="{{route('product.viewAllproduct')}}" class="nav-link">View Product</a>
                     <a href="{{route('product.productWiseOrdered')}}" class="nav-link">Product Wise Ordered</a>
+                    <a href="{{route('product.profitReport')}}" class="nav-link">Profit Report</a>
                 </div>
             </li>
             <li class="nav-item">

@@ -102,15 +102,15 @@
 												@if($products->discount)
 												<?php
 												$result=0;
-												$result=$products->price-($products->price*$products->discount/100) 
+												$result=$products->sellingPrice-($products->sellingPrice*$products->discount/100) 
 												?>
 												<label class="lbl">Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 												<label class="lbl">
-													<del>{{$products->price}} </del> {{$result}} TK
+													<del>{{$products->sellingPrice}} </del> {{$result}} TK
 												</label>
 												@else
 												<label class="lbl">Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-												<label class="lbl">{{$products->price}} TK</label>
+												<label class="lbl">{{$products->sellingPrice}} TK</label>
 												@endif
 											</div>
 											@if($products->unit!='0')
