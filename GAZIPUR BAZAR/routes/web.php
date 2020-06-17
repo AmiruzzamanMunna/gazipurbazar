@@ -118,6 +118,7 @@ Route::get('/medicineEmergency-Index', 'UserController@medicineEmergencyIndex')-
 Route::get('/medicineEmergency/medicinepage/{name}', 'UserController@medicine')->name('user.medicine');
 Route::get('/medicineEmergency/fastaidkitpage/{name}', 'UserController@fastAidKit')->name('user.fastAidKit');
 Route::get('/eidSpecial/{name}', 'UserController@eidSpecial')->name('user.eidSpecial');
+Route::get('/other/{name}', 'UserController@other')->name('user.other');
 
 Route::get('/search/','UserController@searchItem')->name('user.searchItem');
 

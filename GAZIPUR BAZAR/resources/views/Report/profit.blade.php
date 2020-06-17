@@ -14,30 +14,57 @@
 			<div class="card">
 			<div class="card-header"><h2>Report</h2></div>
 			<div class="card-body col-sm-12">
-				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped">
-						<tr>
-							<th>Sl No</th>
-							<th>Image</th>
-							<th>Product Name</th>
-							<th>Discount</th>
-							<th>Getting Price</th>
-							<th>Total Quantity</th>
-							<th>Total Amount</th>
-							<th>Profit</th>
-						</tr>
-						@foreach($datas as $key=>$order)
-						<tr>
-							<td>{{$key+1}}</td>
-							<td><img src="{{asset('images/product')}}/{{$order->image1}}" alt="" height="60px" width="60px"></td>
-							<td>{{$order->product_name}}</td>
-                            <td>{{$order->discount}}</td>
-                            <td>{{$order->price}}</td>
-                            <td>{{$order->totalQuantity}}</td>
-                            <td>{{$order->orderTotal}}</td>
-                            <td>{{$order->profit}}</td>
-						</tr>
-						@endforeach
+				<div class="row">
+					<table class="table table-bordered table-responsive table-hover">
+
+                        <thead>
+
+                            <tr>
+                                <th>Sl No</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Discount</th>
+                                <th>Getting Price</th>
+                                <th>Total Quantity</th>
+                                <th>Total Amount</th>
+                                <th>Profit</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            @php
+                            $total=0;
+                            @endphp
+                            @foreach($datas as $key=>$order)
+                            <tr>
+                                <td>{{$key+1}}</td>
+                                <td><img src="{{asset('images/product')}}/{{$order->image1}}" alt="" height="60px" width="60px"></td>
+                                <td>{{$order->product_name}}</td>
+                                <td>{{$order->discount}}</td>
+                                <td>{{$order->price}}</td>
+                                <td>{{$order->totalQuantity}}</td>
+                                <td>{{$order->orderTotal}}</td>
+                                <td>{{$order->profit}}</td>
+                                @php
+                                    $total+=$order->profit
+                                @endphp
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+						
+                        
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="4"><h3>Total Profit - {{$total}}</h3></td>
+                            </tr>
+                        </tfoot>
 					</table>
 				</div>
 			</div>

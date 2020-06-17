@@ -51,6 +51,7 @@
 					    <a class="dropdown-item dropitem" href="{{route('user.partsAccessoriesIndex')}}">Parts and Accessories of Bikes & Cars</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.medicineEmergencyIndex')}}">Medicine & Emergency</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.eidSpecial','Eid Special')}}">Eid Special</a>
+					    <a class="dropdown-item dropitem" href="{{route('user.other','other')}}">Other</a>
 				  	</div>
 				</li>
 			</ul>
