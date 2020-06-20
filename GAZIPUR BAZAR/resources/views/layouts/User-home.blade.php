@@ -159,18 +159,14 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="row">
-						<div class="col-6 ml-auto">
+						<div class="col-5 ml-auto">
 							<div class="row">
-								<div class="col-8 m-auto">
-									<span>&copy; 2019 All Rights Reserved by 2marShop.com</span>
-								</div>
+								<span>&copy; 2019 All Rights Reserved by 2marShop.com</span>
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-4 m-auto">
 							<div class="row">
-								<div class="col-7 m-auto">
-									<span>Design & Developed by <a target="blank" href="https://www.facebook.com/md.amiruzzaman.12">Amiruzzaman Bin Ali</a></span>
-								</div>
+								<span>Design & Developed by <a target="blank" href="https://www.facebook.com/md.amiruzzaman.12">Amiruzzaman Bin Ali</a></span>
 							</div>
 						</div>
 					</div>

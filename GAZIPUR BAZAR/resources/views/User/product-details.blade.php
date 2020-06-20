@@ -76,20 +76,14 @@
 												</label>
 												@if($products->quantity>0)
 												<label class="lbl">
-													{{$products->quantity}}
+													Available
 												</label>
 												@else
 												<label class="lbl">
 													Out of Stock
 												</label>
 												@endif
-												@if ($products->unit!='0')
-
-												<label class="lbl">
-													({{$products->unit}})
-												</label>
-													
-												@endif
+												
 												
 											</div>
 											@if($products->discount)
@@ -110,7 +104,16 @@
 												</label>
 												@else
 												<label class="lbl">Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-												<label class="lbl">{{$products->sellingPrice}} TK</label>
+												<label class="lbl">{{$products->sellingPrice}} TK
+													@if ($products->unit!='0')
+
+														<label class="lbl">
+															(Per {{$products->unit}})
+														</label>
+													
+														
+													@endif
+												</label>
 												@endif
 											</div>
 											@if($products->unit!='0')
