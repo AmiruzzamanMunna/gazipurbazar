@@ -9,17 +9,17 @@
     margin:10,
     nav:false,
     autoplay:true,
-    autoplayTimeout:2000,
+    autoplayTimeout:8000,
     responsiveClass:true,
     responsive:{
         0:{
-            items:1
+            items:2
         },
         600:{
-            items:3
+            items:4
         },
         1000:{
-            items:6
+            items:5
         }
     }
 });
@@ -40,14 +40,15 @@
 		    	@endif
 		    	<a href="{{route('productDetails',[$product->id])}}" class=""><br>
 		    		<img src="{{asset('images/product')}}/{{$product->image1}}" class="allproductsize">
-		    	</a>
-		    	<div class="buyname col-md-12">
-		    		<div class="row">
-		    			<a href="{{route('productDetails',[$product->id])}}" class="">{{$product->product_name}}</a>
-		    		</div>
-		    	</div>
+				</a>
+				<div class="row">
+					<div class="buyname" style="margin-left: 50px">
+						<a href="{{route('productDetails',[$product->id])}}">{{$product->product_name}}</a>
+					</div>
+				</div>
+		    	
 		    	<div class="row">
-		    		<div class="buyprice col-md-12 col-sm-6">
+		    		<div class="buyprice" style="margin-left: 40px">
 			    		@if($product->discount)
 			    		<?php
 			    			$result=0;

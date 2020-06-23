@@ -8,7 +8,9 @@ class TestController extends Controller
 {
     public function test(Request $request)
     {
-    	return view('User.test');
+		$img=asset('images/2mar/coming.jpg');
+		
+    	echo"<img height='800px' width='1330px' src=".$img.">";
     }
     public function testadd(Request $request)
     {

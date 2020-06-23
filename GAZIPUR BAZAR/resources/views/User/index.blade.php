@@ -9,19 +9,20 @@
     margin:10,
     nav:false,
     autoplay:true,
-    autoplayTimeout:6000,
+    autoplayTimeout:8000,
     responsiveClass:true,
     responsive:{
         0:{
             items:1
         },
         600:{
-            items:4
+            items:3
         },
         1000:{
             items:3
         }
-    }
+    },
+	
 });
 </script>
 @endsection
@@ -115,28 +116,31 @@
 		    	<a href="{{route('productDetails',[$gent->id])}}" class=""><br>
 		    		<img src="{{asset('images/product')}}/{{$gent->image1}}" class="imagesize">
 		    	</a>
-		    	<div class="buyname col-md-12">
-		    		<a href="{{route('productDetails',[$gent->id])}}">{{$gent->product_name}}</a>
-		    	</div>
-		    	<div class="buyprice col-md-12 col-sm-6">
-					<div class="row">
+		    	<div class="row">
+					<div class="buyname col-sm-6 col-md-6 col-lg-6 col-xl-6" style="margin-left: 100px">
+						<a href="{{route('productDetails',[$gent->id])}}">{{$gent->product_name}}</a>
+					</div>
+				</div>
+		    	<div class="row">
+					<div class="buyprice col-sm-6 col-lg-6 col-xl-6 col-md-6" style="margin-left: 100px">
 						@if($gent->discount)
-							<?php
-							$result=0;
-							$result=$gent->price-($gent->price * $gent->discount/100);
-							?>
-							<span>Price: <del class="errorprice">{{$gent->price}}</del></span>
-							<span>{{$result}} TK</span>
+								<?php
+								$result=0;
+								$result=$gent->price-($gent->price * $gent->discount/100);
+								?>
+								<span>Price: <del class="errorprice">{{$gent->price}}</del></span>
+								<span>{{$result}} TK</span>
 						@else
 							<span>Price: {{$gent->price}} TK</span>
 						@endif
 					</div>
-		    	</div>
+				</div>
 		    	<a href="{{route('productDetails',[$gent->id])}}" class="btn btn-success col-md-12">Buy Now</a>
 		    </div>
 		    @empty
 		    <h1>Sorry No Product is Available</h1>
-		    @endforelse
+			@endforelse
+			
 		</div>
 	</div>
 	{{-- <div class="row">

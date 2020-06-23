@@ -51,8 +51,7 @@
 				                        <th>Size</th>
 				                        <th>Unit Price</th>
 				                        <th>Subtotal</th>
-				                        <th>Remove</th>
-				                        <th>Update</th>
+				                        <th>Action</th>
 				                    </tr>
 				                    
 				                    <tr v-for="data in getData">
@@ -65,15 +64,16 @@
 				                    	<td>@{{data.unit_price}}</td>
 										<td>@{{data.subtotal}}</td>
 				                    	<td>
-											<div class="row m-auto">
-												<i class="fas fa-trash-alt" @click="cartRemove(data.id)"></i>
+											<div class="row">
+												<div class="row m-auto">
+													<i class="fas fa-trash-alt" @click="cartRemove(data.id)"></i>
+												</div>
+												<div class="row m-auto">
+													<i class="fas fa-edit" @click="cartUpdate(data.id)"></i>
+												</div>
 											</div>
 										</td>
-				                    	<td>
-											<div class="row m-auto">
-												<i class="fas fa-edit" @click="cartUpdate(data.id)"></i>
-											</div>
-										</td>
+				                    	
 				                    </tr>
 
 		           			 	</table>

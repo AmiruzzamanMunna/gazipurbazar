@@ -94,13 +94,14 @@
 .buyname a{
     color: black;
     font-family: Russo one;
-    font-size: 18px;
+    font-size: 16px;
 }
 .buyprice{
 	margin: 10px;
 	padding: 10px;
 	font-family: Russo one;
-    font-size: 18px;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 .errorprice{
@@ -276,7 +277,7 @@ a:hover{
 /*All Product Page*/
 .allproductsize{
 	width: 230px;
-	height: 230px;
+	height: 187px;
 }
 /*Cart Page*/
 .cartcard{

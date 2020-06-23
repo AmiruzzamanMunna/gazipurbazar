@@ -12,9 +12,9 @@
 */
 
 
-Route::get('/test','TestController@test');
-Route::post('/test','TestController@testadd');
-Route::get('/', 'UserController@index')->name('user.index');
+Route::get('/','TestController@test');
+// Route::post('/test','TestController@testadd');
+Route::get('/home', 'UserController@index')->name('user.index');
 Route::get('/emailValidate','User\UserRegistrationController@emailValidate')->name('user.emailValidate');
 Route::get('/UserRegistration','User\UserRegistrationController@signUP')->name('user.signUP');
 Route::post('/UserRegistration','User\UserRegistrationController@signUPStore')->name('user.signUPStore');

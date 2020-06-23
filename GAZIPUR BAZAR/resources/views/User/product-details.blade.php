@@ -6,6 +6,7 @@
 
 <script type="text/javascript">
 	function change() {
+		
 		var img=document.getElementById('td1');
 		img.src="{{asset('images/product')}}/{{$products->image1}}";
 	}
@@ -156,12 +157,12 @@
 						@endif
 						@if ($products->image2)
 							
-							<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image2}}" alt="im1" onclick="change();">
+							<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image2}}" alt="im1" onclick="change1();">
 											
 						@endif
 						@if ($products->image3)
 							
-							<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image3}}" alt="im1" onclick="change();">
+							<img id="im1" style="margin-top: 15px; margin-left:38px" height="90px" width="70px" class="img-fluid" src="{{asset('images/product')}}/{{$products->image3}}" alt="im1" onclick="change2();">
 											
 						@endif
 						
@@ -281,7 +282,7 @@
 		},
 		mounted:function(){
 
-			console.log('hahah');
+			
 		}
 	});
 </script>
