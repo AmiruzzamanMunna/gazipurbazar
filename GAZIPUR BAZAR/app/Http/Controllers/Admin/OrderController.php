@@ -151,12 +151,12 @@ class OrderController extends Controller
                     address,
                     email,
                     invoice_id,
-                    tbl_order.user_id as user_id,
+                    tbl_order.user_id AS user_id,
                     product_name,
                     image1,
-                    cart_quantity,
+                    SUM(cart_quantity) AS cart_quantity,
                     cart_size,
-                    cart_totalprice,
+                    SUM(cart_totalprice) AS cart_totalprice,
                     orderdate,
                     status
                 FROM
@@ -165,11 +165,14 @@ class OrderController extends Controller
                     tbl_product ON tbl_product.id = tbl_order.cart_product_id
                         LEFT JOIN
                     tbl_invoice ON tbl_invoice.id = tbl_order.invoice_id
-                    where invoice_id=$id
+                WHERE
+                    invoice_id = $id
+                GROUP BY tbl_product.id
         ");
         
         
         return view('Admin.orderinfo')
+            ->with('id',$id)
             ->with('admins',$admins)
             ->with('events',$events)
             ->with('orders',$orders);

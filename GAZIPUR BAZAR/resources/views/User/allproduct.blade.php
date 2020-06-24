@@ -52,11 +52,11 @@
 			    		@if($product->discount)
 			    		<?php
 			    			$result=0;
-			    			$result=$product->price-($product->price * $product->discount/100);
+			    			$result=$product->sellingPrice-($product->sellingPrice * $product->discount/100);
 			    		?>
-			    		<span>Price:<del class="errorprice">{{$product->price}} </del>{{$result}} TK</span>
+			    		<span>Price:<del class="errorprice">{{$product->sellingPrice}} </del>{{$result}} TK</span>
 			    		@else
-			    		<span>Price: {{$product->price}} TK</span>
+			    		<span>Price: {{$product->sellingPrice}} TK</span>
 			    		@endif
 		    		</div>
 		    	</div>

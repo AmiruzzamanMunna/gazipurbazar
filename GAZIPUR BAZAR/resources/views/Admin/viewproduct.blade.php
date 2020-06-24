@@ -21,6 +21,7 @@
 							<th>Discount %</th>
 							<th>Quantity</th>
 							<th>New Arrival</th>
+							<th>Status</th>
 						</tr>
 						@forelse($products as $product)
 						<tr>
@@ -36,6 +37,13 @@
 									Yes
 								@else
 									No
+								@endif
+							</td>
+							<td>
+								@if($product->product_status==0)
+								<span class="badge badge-success" style="font-size: medium">Active</span>
+								@else
+								<span class="badge badge-danger" style="font-size: medium">DeActive</span>
 								@endif
 							</td>
 						</tr>

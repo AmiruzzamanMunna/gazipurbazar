@@ -81,6 +81,16 @@ class ProductController extends Controller
         $product->image3 = $filename3;
       }
       $product->specifications =$request->specifications;
+      if($request->product_status==0){
+
+        $product->product_status =0;
+
+      }
+      if($request->product_status==1){
+
+        $product->product_status =1;
+
+      }
       $product->save();
       $request->session()->flash('message','Data Inserted');
 	    return back();
@@ -162,6 +172,18 @@ class ProductController extends Controller
         $product->image3 = $filename3;
       }
       $product->specifications =$request->specifications;
+      
+      if($request->product_status==0){
+
+        $product->product_status =0;
+
+      }
+      if($request->product_status==1){
+
+        $product->product_status =1;
+
+      }
+      
       $product->save();
       $request->session()->flash('message','Data Updated');
       return back();
@@ -186,6 +208,7 @@ class ProductController extends Controller
               LEFT JOIN
           tbl_order ON tbl_order.cart_product_id = tbl_product.id
       GROUP BY tbl_product.id
+      ORDER BY productOrdered DESC
       ");
       $events=EventIndex::all();
       return view('Admin.productwise')
@@ -199,27 +222,32 @@ class ProductController extends Controller
       $admins=Admin::all();
       $datas=DB::select("
 
-            SELECT 
-            id,
-            image1,
-            product_name,
-            IFNULL(discount, 0) AS discount,
-            price,
-            totalQuantity,
-            orderTotal,
-            ((orderTotal - (price * totalQuantity)) - (IFNULL(discount, 0) * totalQuantity * price / 100)) AS profit
-        FROM
-            tbl_product
-                LEFT JOIN
-            (SELECT 
-                cart_product_id,
-                    SUM(cart_quantity) AS totalQuantity,
-                    SUM(cart_totalprice) AS orderTotal
-            FROM
-                tbl_order
-            GROUP BY cart_product_id) AS tbl_order ON tbl_order.cart_product_id = tbl_product.id
-        GROUP BY id
-        ORDER BY orderTotal DESC
+        SELECT 
+          id,
+          image1,
+          product_name,
+          IFNULL(discount, 0) AS discount,
+          price,
+          sellingPrice,
+          totalQuantity,
+          (price * totalQuantity) AS total,
+          orderTotal,
+          ((orderTotal - (price * totalQuantity))) AS profit
+      FROM
+          tbl_product
+              LEFT JOIN
+          (SELECT 
+              cart_product_id,
+                  SUM(cart_quantity) AS totalQuantity,
+                  SUM(cart_totalprice) AS orderTotal
+          FROM
+              tbl_order
+          LEFT JOIN tbl_invoice ON tbl_invoice.id = tbl_order.invoice_id
+          WHERE
+              status = 2
+          GROUP BY cart_product_id) AS tbl_order ON tbl_order.cart_product_id = tbl_product.id
+      GROUP BY id
+      ORDER BY orderTotal DESC
       ");
     
       $events=EventIndex::all();

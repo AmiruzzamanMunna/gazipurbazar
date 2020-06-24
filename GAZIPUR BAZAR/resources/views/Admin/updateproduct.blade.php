@@ -158,6 +158,32 @@
                                 <textarea type=text rows="4" cols="35" class="cols" name="specifications">{{$products->specifications}}</textarea>
                             </div>
 						</div>
+						<div class="form-group row">
+							<label class="col-md-3">Product Status:</label>
+							<div class="col-md-8">
+								<select class="form-control" name="product_status">
+									<option value="">Select---</option>
+									@if ($products->product_status==0)
+
+										<option value="0" selected>Active</option>
+										<option value="1">De-Active</option>
+										
+									@elseif($products->product_status==1)
+
+									<option value="0">Active</option>
+									<option value="1" selected>De-Active</option>
+
+									@else
+
+									<option value="0">Active</option>
+									<option value="1">De-Active</option>
+										
+									@endif
+		
+									
+								</select>
+							</div>
+						</div><br>
 						@if($errors->any())
 							<ul>
 								@foreach($errors-> all() as $error)

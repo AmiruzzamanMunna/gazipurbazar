@@ -25,7 +25,9 @@
                                 <th>Product Name</th>
                                 <th>Discount</th>
                                 <th>Getting Price</th>
+                                <th>Selling Price</th>
                                 <th>Total Quantity</th>
+                                <th>Total Price</th>
                                 <th>Total Amount</th>
                                 <th>Profit</th>
                             </tr>
@@ -41,9 +43,11 @@
                                 <td>{{$key+1}}</td>
                                 <td><img src="{{asset('images/product')}}/{{$order->image1}}" alt="" height="60px" width="60px"></td>
                                 <td>{{$order->product_name}}</td>
-                                <td>{{$order->discount}}</td>
+                                <td>{{$order->discount}} %</td>
                                 <td>{{$order->price}}</td>
+                                <td>{{$order->sellingPrice}}</td>
                                 <td>{{$order->totalQuantity}}</td>
+                                <td>{{$order->total}}</td>
                                 <td>{{$order->orderTotal}}</td>
                                 <td>{{$order->profit}}</td>
                                 @php
@@ -57,6 +61,8 @@
                         
                         <tfoot>
                             <tr>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

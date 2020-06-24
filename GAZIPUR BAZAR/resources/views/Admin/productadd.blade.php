@@ -121,6 +121,21 @@
                                 <textarea type=text rows="4" cols="35" class="cols" name="specifications"></textarea>
                             </div>
 						</div>
+						<div class="form-group row">
+							<label class="col-md-3">Product Status:</label>
+							<div class="col-md-8">
+								<select class="form-control" name="product_status">
+									<option value="">Select---</option>
+
+									<option value="0">Active</option>
+									<option value="1">De-Active</option>
+										
+					
+		
+									
+								</select>
+							</div>
+						</div><br>
 						@if($errors->any())
 							<ul>
 								@foreach($errors-> all() as $error)

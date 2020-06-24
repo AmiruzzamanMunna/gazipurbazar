@@ -53,14 +53,19 @@
 							<th>Product Name</th>
 							<th>Quantity</th>
 							<th>Product Size</th>
+							<th>Price</th>
 							<th>Status</th>
 						</tr>
+						@php
+							$total=0
+						@endphp
 						@forelse($orders as $order)
 						<tr>
 							<td><img src="{{asset('images/product')}}/{{$order->image1}}" id="orderimage"></td>
 							<td>{{$order->product_name}}</td>
 							<td>{{$order->cart_quantity}}</td>
 							<td>{{$order->cart_size}}</td>
+							<td>{{$order->cart_totalprice}}</td>
 							<td>
 								@if($order->status==1)
                                 	<span class="badge badge-primary" style="font-size: medium">Pending</span>
@@ -72,6 +77,9 @@
 									<span class="badge badge-danger" style="font-size: medium">Cancel</span>
 								@endif
 							</td>
+							@php
+								$total+=$order->cart_totalprice
+							@endphp
 						</tr>
 						@empty
 						@endforelse
@@ -79,7 +87,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td>Total Price: {{$order->cart_totalprice}} TK</td>
+							<td>Total Price: {{$total}} TK</td>
 							<td></td>
 						</tr>
 					</table>
@@ -89,18 +97,17 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="row">
-							@foreach($orders as $order)
+							
 							<div class="col-md-3 ml-auto">
-								<button type="button" class="btn btn-danger"><a href="{{route('order.statuscancel',[$order->invoice_id])}}">Canceled</a></button>
+								<button type="button" class="btn btn-danger"><a href="{{route('order.statuscancel',[$id])}}">Canceled</a></button>
 							</div>
 							<div class="col-md-3 m-auto">
-								<button type="button" class="btn btn-warning"><a href="{{route('order.statusreceived',[$order->invoice_id])}}">Received</a></button>
+								<button type="button" class="btn btn-warning"><a href="{{route('order.statusreceived',[$id])}}">Received</a></button>
 							</div>
 							<div class="col-md-2 mr-auto">
-								<button type="button" class="btn btn-success"><a href="{{route('order.statusdelivered',[$order->invoice_id])}}">Delivered</a></button>
+								<button type="button" class="btn btn-success"><a href="{{route('order.statusdelivered',[$id])}}">Delivered</a></button>
 							</div>
-							@break
-							@endforeach
+							
 						</div>
 					</div>
 				</div>	

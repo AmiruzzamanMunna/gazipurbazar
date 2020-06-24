@@ -65,9 +65,9 @@ class ProfileController extends Controller
                     O.user_id AS userID,
                     image1,
                     product_name,
-                    cart_totalprice,
+                    (SUM(cart_quantity)*cart_totalprice) as cart_totalprice,
                     cart_size,
-                    cart_quantity,
+                    SUM(cart_quantity) AS cart_quantity,
                     DATE(O.orderdate) AS orderdate,
                     status
                 FROM
@@ -79,6 +79,8 @@ class ProfileController extends Controller
                 WHERE
                     O.user_id = $users->id
                         AND DATE(O.orderdate) = '$date'
+
+                GROUP BY tbl_product.id
                 
             ");
 

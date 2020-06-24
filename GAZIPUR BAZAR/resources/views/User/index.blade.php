@@ -126,12 +126,12 @@
 						@if($gent->discount)
 								<?php
 								$result=0;
-								$result=$gent->price-($gent->price * $gent->discount/100);
+								$result=$gent->sellingPrice-($gent->sellingPrice * $gent->discount/100);
 								?>
-								<span>Price: <del class="errorprice">{{$gent->price}}</del></span>
+								<span>Price: <del class="errorprice">{{$gent->sellingPrice}}</del></span>
 								<span>{{$result}} TK</span>
 						@else
-							<span>Price: {{$gent->price}} TK</span>
+							<span>Price: {{$gent->sellingPrice}} TK</span>
 						@endif
 					</div>
 				</div>

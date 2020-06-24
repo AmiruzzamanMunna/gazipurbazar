@@ -57,6 +57,7 @@ class UserController extends Controller
             $fruits=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('category_name','food-fruits&vegitable')
+                        ->where('product_status',0)
                         ->get();
             $ladies=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                             ->select("*","tbl_product.id as id","tbl_category.id as catid")
@@ -97,6 +98,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('newarrival',1)
+                        ->where('product_status',0)
                         ->get();
         return view('User.allproduct')
             ->with('products',$products)
@@ -116,6 +118,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('discount','>','0')
+                        ->where('product_status',0)
                         ->get();
         return view('User.allproduct')
             ->with('products',$products)
@@ -916,6 +919,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('category_name',$name)
+                        ->where('product_status',0)
                         ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
@@ -934,6 +938,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('category_name',$name)
+                        ->where('product_status',0)
                         ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
@@ -952,6 +957,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('category_name',$name)
+                        ->where('product_status',0)
                         ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
@@ -970,6 +976,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('category_name',$name)
+                        ->where('product_status',0)
                         ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
@@ -988,6 +995,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('category_name',$name)
+                        ->where('product_status',0)
                         ->get();
         return view('User.allproduct')
         ->with('quantity',$quantity)
@@ -1268,6 +1276,7 @@ class UserController extends Controller
         $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where('product_name','like','%'.$search.'%')
+                        ->where('product_status',0)
                         ->get();
         
         return view('User.allproduct')
@@ -1291,6 +1300,7 @@ class UserController extends Controller
             $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                         ->select("*","tbl_product.id as id","tbl_category.id as catid")
                         ->where("tbl_product.id",$id)
+                        ->where('product_status',0)
                         ->first();
           
             $sizes = json_decode($products->size);
@@ -1301,7 +1311,7 @@ class UserController extends Controller
             ->with('sizes',$sizes);
 
         }catch(Exception $e){
-
+            
             return view('Error.error');
 
         }
@@ -1433,6 +1443,7 @@ class UserController extends Controller
             $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                             ->select("*","tbl_product.id as id","tbl_category.id as catid")
                             ->where('category_name',$name)
+                            ->where('product_status',0)
                             ->get();
             return view('User.allproduct')
             ->with('quantity',$quantity)
@@ -1459,6 +1470,7 @@ class UserController extends Controller
             $products=Product::leftjoin('tbl_category','tbl_category.id','tbl_product.category_fk')
                             ->select("*","tbl_product.id as id","tbl_category.id as catid")
                             ->where('category_name',$name)
+                            ->where('product_status',0)
                             ->get();
             return view('User.allproduct')
             ->with('quantity',$quantity)

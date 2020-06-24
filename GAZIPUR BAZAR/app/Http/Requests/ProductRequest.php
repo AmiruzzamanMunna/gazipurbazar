@@ -32,7 +32,6 @@ class ProductRequest extends FormRequest
             'quantity'=>'required',
             'newarrival'=>'required',
             'image1'=>'required',
-            'image2'=>'required',
             'specifications'=>'required',
         ];
     }
