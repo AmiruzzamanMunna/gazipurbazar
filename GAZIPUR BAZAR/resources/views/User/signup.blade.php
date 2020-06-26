@@ -11,47 +11,43 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
-					<div class="col-md-8 m-auto">
+					<div class="col-md-8 col-sm-10 col-xl-8 col-lg-8 m-auto">
 						<div class="card userregistration">
-							<div class="card-header">User Registration</div>
+							<div class="card-header">
+								<h2>User Registration</h2>
+							</div>
 							<div class="card-body">
 								<form id="validate" method="post">
 									@csrf
 									<div class="form-group row">
 										<label class="col-md-4">Name:</label>
 										<div class="col-md-8">
-											<input type="text" name="name" class="form-control">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-4">User Name:</label>
-										<div class="col-md-8">
-											<input type="text" name="username" class="form-control">
+											<input type="text" name="name" value="{{old('name')}}" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-4">E-mail:</label>
 										<div class="col-md-8">
-											<input type="text" name="email" id="email" onfocusout="validEmailCheck()" class="form-control">
+											<input type="text" name="email" id="email" value="{{old('email')}}" onfocusout="validEmailCheck()" class="form-control">
 											<span class="error" id="exist">Email already Exist</span>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-4">Mobile:</label>
 										<div class="col-md-8">
-											<input type="text" name="mobile" class="form-control">
+											<input type="text" name="mobile" class="form-control" value="{{old('mobile')}}">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-4">Mobile2:</label>
+										<label class="col-md-4">Mobile2(Optional) :</label>
 										<div class="col-md-8">
-											<input type="text" name="mobile2" class="form-control">
+											<input type="text" name="mobile2" class="form-control" value="{{old('mobile2')}}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-4">Address:</label>
 										<div class="col-md-8">
-											<input type="text" name="address" class="form-control">
+											<input type="text" name="address" class="form-control" value="{{old('address')}}">
 										</div>
 									</div>
 									<div class="form-group row">
@@ -76,19 +72,22 @@
 										@endif
 									</div>
 									<div class="row">
-										<div class="col-md-9">
-											<input type="reset" class="btn btn-primary" name="reset" value="Reset">
-										</div>
-										<div class="col-md-3 ml-auto">
-											<input type="submit" class="btn btn-success"  id="submitForm" name="submit" value="Register">
-										</div>
-										@if(session('message'))
-											<div class="alert alert-success m-auto">
-												{{session('message')}}
+										<div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
+											<div class="row">
+												
+												<input type="reset" class="btn btn-primary col-4 m-auto" name="reset" value="Reset">
+												
+												<input type="submit" class="btn btn-success col-4 m-auto"  id="submitForm" name="submit" value="Register">
+												
 											</div>
-										@endif
+										</div>
 									</div>
 								</form>
+								@if(session('message'))
+									<div class="alert alert-success m-auto">
+										{{session('message')}}
+									</div>
+								@endif
 							</div>
 						</div>
 					</div>

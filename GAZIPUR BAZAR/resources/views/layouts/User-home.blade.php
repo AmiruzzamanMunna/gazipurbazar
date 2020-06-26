@@ -22,7 +22,7 @@
 	<nav class="navbar navbar-expand-md fixed-top" id="navId">
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"  aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
+    		<span style="font-size:28px;cursor:pointer;" >&#9776;</span>
 		</button>
 		  
 		<a href="{{route('user.index')}}" class="navbar-brand droplink m-auto">

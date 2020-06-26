@@ -25,7 +25,6 @@ class SignupRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'username'=>'required',
             'email'=>'required|unique:tbl_user,email',
             'mobile'=>'required',
             'address'=>'required',
