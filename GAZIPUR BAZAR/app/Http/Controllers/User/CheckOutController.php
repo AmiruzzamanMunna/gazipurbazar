@@ -50,6 +50,7 @@ class CheckOutController extends Controller
     	$invoice->user_id=$userid;
     
     	$invoice->status=1;
+    	$invoice->Order_date=date('Y-m-d H:i:s');
     	if($invoice->save()>0)
     	{
     		foreach($carts as $cart){
@@ -72,6 +73,7 @@ class CheckOutController extends Controller
     			$product->quantity=$product->quantity-$cart->quantity;
     			$product->save();
     			$order->cart_totalprice=$cart->total_price;
+    			$order->orderdate=date('Y-m-d H:i:s');
     			if ($order->save()>0) {
 					
     				$cart=Cart::where('user_id',$request->session()->get('loggedUser'))

@@ -1,6 +1,6 @@
 @extends('layouts.Admin-home')
 @section('title')
-	Order
+	Extra Order
 @endsection
 @section('css')
 	
@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-md-12 col-sm-12 ordercard">
 			<div class="card">
-			<div class="card-header"><h2>All Order</h2></div>
+			<div class="card-header"><h2>Extra Order</h2></div>
 			<div class="card-body col-sm-12">
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover table-striped">
@@ -33,19 +33,19 @@
 							<td>{{$order->mobile}}</td>
 							<td>{{$order->mobile2}}</td>
 							<td>{{$order->address}}</td>
-							<td>{{date('h:i:s a d-m-y',strtotime($order->Order_date))}}</td>
+							<td>{{date('h:i:s a d-m-y',strtotime($order->tbl_extra_data))}}</td>
 							<td>
-								@if($order->status==1)
+								@if($order->tbl_extra_status==1)
                                 	<span class="badge badge-primary" style="font-size: medium">Pending</span>
-								@elseif($order->status==2)
+								@elseif($order->tbl_extra_status==2)
 									<span class="badge badge-success" style="font-size: medium">Delivered</span>
-								@elseif($order->status==3)
+								@elseif($order->tbl_extra_status==3)
 									<span class="badge badge-warning" style="font-size: medium">Received</span>
 								@else
 									<span class="badge badge-danger" style="font-size: medium">Cancel</span>
 								@endif
 							</td>
-							<td><a href="{{route('order.orderInfoShow',$order->id)}}" class="order btn btn-success">Show</a></td>
+							<td><a href="{{route('order.adminExtraOrderInfo',$order->tbl_extra_id)}}" class="order btn btn-success">Show</a></td>
 						</tr>
 						@endforeach
 					</table>

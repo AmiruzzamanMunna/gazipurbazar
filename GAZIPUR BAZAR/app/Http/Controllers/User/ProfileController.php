@@ -33,6 +33,7 @@ use App\LadiesIndex;
 use App\AboutUS;
 use App\Policy;
 use App\ContactUs;
+use App\Extra;
 use Exception;
 
 class ProfileController extends Controller
@@ -141,6 +142,36 @@ class ProfileController extends Controller
             ");
 
             return view('profile.history')
+                ->with('quantity',$quantity)
+                ->with('footers',$footers)
+                ->with('users',$users)
+                ->with('orders',$orders);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
+        }
+    }
+    public function extraOrder(Request $request)
+    {
+        try{
+
+            $users = User::where('id',$request->session()->get('loggedUser'))->first();
+            
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $date=date('y-m-d');
+            
+            $footers=ContactUs::all();
+
+            $orders=Extra::where('tbl_extra_user_id',$request->session()->get('loggedUser'))
+                            ->get();
+
+            return view('profile.extraorder')
                 ->with('quantity',$quantity)
                 ->with('footers',$footers)
                 ->with('users',$users)

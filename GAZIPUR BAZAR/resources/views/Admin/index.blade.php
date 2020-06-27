@@ -63,6 +63,18 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-3">
+							<div class="card">
+								<div class="card-header">Total Extra</div>
+								<div class="card-body">
+									<img src="{{asset('images')}}/extra.jpg" class="orderimage">
+									<div><h1>{{$extra}}</h1></div>
+								</div>
+								<div class="card-footer">
+									<a href="{{route('order.adminExtraOrder')}}" class="orderlink">Details....</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -79,6 +91,7 @@
 							<th>Sl No</th>
 							<th>Customer Name</th>
 							<th>Mobile</th>
+							<th>Mobile2</th>
 							<th>Address</th>
 							<th>Order Date</th>
 							<th>Status</th>
@@ -89,6 +102,7 @@
 							<td>{{$key+1}}</td>
 							<td>{{$order->name}}</td>
 							<td>{{$order->mobile}}</td>
+							<td>{{$order->mobile2}}</td>
 							<td>{{$order->address}}</td>
 							<td>{{date('h:i:s a d-m-y',strtotime($order->Order_date))}}</td>
 							<td>

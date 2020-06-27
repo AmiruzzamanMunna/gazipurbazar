@@ -52,6 +52,7 @@
 					    <a class="dropdown-item dropitem" href="{{route('user.medicineEmergencyIndex')}}">Medicine & Emergency</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.eidSpecial','Eid Special')}}">Eid Special</a>
 					    <a class="dropdown-item dropitem" href="{{route('user.other','other')}}">Other</a>
+					    <a class="dropdown-item dropitem" href="{{route('order.getExtraOrder')}}">Looking for something else that we don't have!!</a>
 				  	</div>
 				</li>
 			</ul>

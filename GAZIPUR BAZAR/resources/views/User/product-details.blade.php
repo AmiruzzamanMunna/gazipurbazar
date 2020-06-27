@@ -118,21 +118,26 @@
 												@endif
 											</div>
 											@if($products->unit!='0')
-											<div class="form-group row">
-												<label class="lbl">Quantity &nbsp;&nbsp;:</label>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" class="form-control col-2" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
-												<div id='msg'></div>
-											</div>
-											<div class=" form-group row">
-												<div class="col-md-12">
-													<button type="submit" @click="addCart()" id="add-cart-button" class="btn btn-success col-md-12">Add To Cart</button>
+												@if ($products->quantity>0)
+
+												<div class="form-group row">
+													<label class="lbl">Quantity &nbsp;&nbsp;:</label>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button @click="removeNum()" style="font-size:14px"><i class="fas fa-minus"></i></i></button><input type="number" class="form-control col-2" id="quantity" name="quantity" id="quantity" value="1"><button style="font-size:14px" @click="addNum()"><i class="fa fa-plus"></i></button>
+													<div id='msg'></div>
 												</div>
-												@if(session('message'))
-												<div class="alert alert-danger m-auto">
-													{{session('message')}}
+												<div class=" form-group row">
+													<div class="col-md-12">
+														<button type="submit" @click="addCart()" id="add-cart-button" class="btn btn-success col-md-12">Add To Cart</button>
+													</div>
+													@if(session('message'))
+													<div class="alert alert-danger m-auto">
+														{{session('message')}}
+													</div>
+													@endif
 												</div>
+													
 												@endif
-											</div>
+												
 											@endif
 										</div>
 									</div>

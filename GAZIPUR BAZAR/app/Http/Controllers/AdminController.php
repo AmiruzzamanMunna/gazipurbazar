@@ -33,6 +33,7 @@ use App\LadiesIndex;
 use App\AboutUS;
 use App\Policy;
 use App\ContactUs;
+use App\Extra;
 
 class AdminController extends Controller
 {
@@ -70,6 +71,8 @@ class AdminController extends Controller
         $current_deliver=0;
         $current_cancel=0;
         $current_pending=0;
+        $extra=Extra::count('tbl_extra_id');
+      
         $orders=DB::table('tbl_invoice')->get();
         foreach ($orders as $order){
             $current_order++;
@@ -101,6 +104,7 @@ class AdminController extends Controller
             ->with('current_pending',$current_pending)
             ->with('current_cancel',$current_cancel)
             ->with('orders',$orders)
+            ->with('extra',$extra)
             ->with('events',$events);
     }
     

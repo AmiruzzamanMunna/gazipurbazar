@@ -83,11 +83,21 @@
                 </li>
                 <li class="nav-item">
                     
+                    <a class="nav-link" data-toggle="collapse" data-target="#demo19" href="#">Users<i id="listicon" class="fa fa-caret-down"></i></a>
+                    <div class="collapse" id="demo19">
+                        
+                        <a href="{{route('admin.premiumUsers')}}" class="nav-link">Premium Users</a>
+                            
+                    </div>
+                </li>
+                <li class="nav-item">
+                    
                     <a class="nav-link" data-toggle="collapse" data-target="#demo17" href="#">Order<i id="listicon" class="fa fa-caret-down"></i></a>
                     <div class="collapse" id="demo17">
                         <a href="{{route('order.todayOrder')}}" class="nav-link">Today's Order</a>
                         <a href="{{route('order.orderShow')}}" class="nav-link">All Order</a>
                         <a href="{{route('order.searchOrder')}}" class="nav-link">Search Order</a>
+                        <a href="{{route('order.adminExtraOrder')}}" class="nav-link">Extra Order</a>
                     </div>
                 </li>
                 <li class="nav-item">

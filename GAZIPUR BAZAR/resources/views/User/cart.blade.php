@@ -161,7 +161,7 @@
 
 						$("#upname").val(response.data.data.productname),
 						$("#upquantity").val(response.data.data.quantity),
-						$("#avail").html('<label> (Available-'+response.data.available.quantity+')</label>'),
+						$("#avail").html('<label> (Available)</label>'),
 						(response.data.status=='error')?$("#bladeshow").html(response.data.error):$("#bladeshow").html(response.data.error)
 					});
 				},

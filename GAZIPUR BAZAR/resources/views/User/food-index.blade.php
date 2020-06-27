@@ -7,7 +7,9 @@
 	<div class="item-heading">
 		@forelse($events as $event)
 		<h1 class="headingelement">{{$event->heading1}}</h1>
-		<p>{{$event->paragraph}}</p>
+		{{-- <p>{{$event->paragraph}}</p> --}}
+		@empty
+		@endforelse
 	</div>
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
@@ -53,8 +55,7 @@
 						<a href="{{route('user.freshMilk','food-freshmilk')}}"><img class="img-fluid" id="itemcontain-img" src="{{asset('images/uploads')}}/{{$event->image5}}"></a>
 					</div>
 				</div>
-				@empty
-				@endforelse
+				
 			</div>
 		</div>
 	</div>

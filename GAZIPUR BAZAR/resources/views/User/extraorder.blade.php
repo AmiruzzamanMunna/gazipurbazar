@@ -1,10 +1,12 @@
 @extends('layouts.User-home')
 @section('title')
-	User Registration
+	Extra Order
 @endsection
 @section('validate')
 	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+	
+
 @endsection
 @section('container')
 <div class="container">
@@ -14,52 +16,28 @@
 					<div class="col-md-8 col-sm-10 col-xl-8 col-lg-8 m-auto">
 						<div class="card userregistration">
 							<div class="card-header">
-								<h2>User Registration</h2>
+								<h2>Extra Order</h2>
 							</div>
 							<div class="card-body">
-								<form id="validate" method="post">
+								<form id="validate" method="post" enctype="multipart/form-data">
 									@csrf
 									<div class="form-group row">
-										<label class="col-md-4">Name:</label>
+										<label class="col-md-4">Item Name:</label>
 										<div class="col-md-8">
 											<input type="text" name="name" value="{{old('name')}}" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-4">E-mail:</label>
+										<label class="col-md-4">Image(for our better understanding):</label>
 										<div class="col-md-8">
-											<input type="text" name="email" id="email" value="{{old('email')}}" onfocusout="validEmailCheck()" class="form-control">
-											<span class="error" id="exist">Email already Exist</span>
+											<input type="file" name="tbl_extra_image" id="image" class="form-control" value="{{old('tbl_extra_image')}}">
+											<img id="src1" height="100px" width="100px">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-4">Mobile:</label>
+										<label class="col-md-4">Quantity:</label>
 										<div class="col-md-8">
-											<input type="text" name="mobile" class="form-control" value="{{old('mobile')}}">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-4">Mobile2(Optional) :</label>
-										<div class="col-md-8">
-											<input type="text" name="mobile2" class="form-control" value="{{old('mobile2')}}">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-4">Address:</label>
-										<div class="col-md-8">
-											<input type="text" name="address" class="form-control" value="{{old('address')}}">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-4">Password:</label>
-										<div class="col-md-8">
-											<input type="password" name="password" id="password" class="form-control">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-4">Confirm Password:</label>
-										<div class="col-md-8">
-											<input type="password" name="confirm_password" class="form-control">
+											<input type="number" name="quantity" class="form-control" value="{{old('address')}}">
 										</div>
 									</div>
 									<div class="error">
@@ -77,7 +55,7 @@
 												
 												<input type="reset" class="btn btn-primary col-4 m-auto" name="reset" value="Reset">
 												
-												<input type="submit" class="btn btn-success col-4 m-auto"  id="submitForm" name="submit" value="Register">
+												<input type="submit" class="btn btn-success col-4 m-auto"  id="submitForm" name="submit" value="Order">
 												
 											</div>
 										</div>
@@ -114,36 +92,27 @@
 					required:true,
 
 				},
-				username:{
+				quantity:{
 					required:true,
 				},
-				email:{
-
-					required: true,
-      				email: true
-				},
-				mobile:{
-					required:true,
-				},
-				address:{
-					required:true,
-				},
-				password:{
-					required:true,
-				},
-				confirm_password:{
-
-					required:true,
-					equalTo:"#password"
-				}
+				
 
 			}
 		});
 
+	$(document).ready(function() {
+
+		$('#image').change(function (event) {
+		var output = $("#src1")[0];
+			output.src = URL.createObjectURL(event.target.files[0]);
+		});
+
+	});
+
 		function validEmailCheck(){
 
 			var email=$("#email").val();
-			
+			console.log(email);
 
 			$.ajax({
 
@@ -165,7 +134,7 @@
 				},
 				error:function(error){
 
-					$("#bladeshow").html(error.error);
+					console.log(error);
 				}
 			});
 

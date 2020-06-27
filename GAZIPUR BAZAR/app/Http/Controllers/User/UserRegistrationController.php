@@ -33,49 +33,77 @@ use App\LadiesIndex;
 use App\AboutUS;
 use App\Policy;
 use App\ContactUs;
+use Exception;
 
 class UserRegistrationController extends Controller
 {
     public function signUP(Request $request)
     {
-        $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
-        $quantity=0;
-        foreach($carts as $cart){
+        
+        try{
 
-            $quantity+=$cart->quantity;
+            $carts =Cart::where('user_id',$request->session()->get('loggedUser'))->get();
+            $quantity=0;
+            foreach($carts as $cart){
+
+                $quantity+=$cart->quantity;
+            }
+            $footers=ContactUs::all();
+            return view('User.signup')
+                ->with('footers',$footers)
+                ->with('quantity',$quantity);
+
+        }catch(Exception $e){
+
+            return view('Error.error');
         }
-        $footers=ContactUs::all();
-        return view('User.signup')
-            ->with('footers',$footers)
-            ->with('quantity',$quantity);
     }
     public function signUPStore(SignupRequest $request)
     {
-        $user = new User();
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->mobile=$request->mobile;
-        $user->mobile2=$request->mobile2;
-        $user->address=$request->address;
-        $user->password=Hash::make($request->password);
-        $user->save();
-        $request->session()->flash('message','Registered Successsfully');
-        return redirect()->route('user.login');
+        try{
+
+            $user = new User();
+            $user->name=$request->name;
+            $user->email=$request->email;
+            $user->mobile=$request->mobile;
+            $user->mobile2=$request->mobile2;
+            $user->address=$request->address;
+            $user->password=Hash::make($request->password);
+            $user->save();
+            $request->session()->flash('message','Registered Successsfully');
+            return redirect()->route('user.login');
+
+        }catch(Exception $e){
+
+            return view('Error.error');
+
+        }
     }
     public function emailValidate(Request $request)
     {
-        $email=$request->email;
 
-        $checkEmail=User::where('email',$email)->first();
+        try{
 
-        if($checkEmail){
+            $email=$request->email;
 
-            return response()->json(array('status'=>'exist'));
+            $checkEmail=User::where('email',$email)->first();
 
-        }else{
+            if($checkEmail){
 
-            return response()->json(array('status'=>'ok'));
+                return response()->json(array('status'=>'exist'));
 
+            }else{
+
+                return response()->json(array('status'=>'ok'));
+
+            }
+
+        }catch(Exception $e){
+
+            $html=view('Error.error')->render();
+
+			return response()->json(array('status'=>'error','error'=>$html));
         }
+        
     }
 }

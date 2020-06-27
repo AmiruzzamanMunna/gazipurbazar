@@ -145,12 +145,16 @@ Route::group(['middleware'=>['userSess']],function(){
 	Route::get('/checkout','User\CheckOutController@checkOut')->name('order.checkOut');
 	Route::post('/checkout','User\CheckOutController@checkOutStore')->name('order.checkOutStore');
 
+	Route::get('/getExtraOrder','User\ExtraController@getExtraOrder')->name('order.getExtraOrder');
+	Route::post('/getExtraOrder','User\ExtraController@getExtraOrderStore')->name('order.getExtraOrderStore');
+
 	Route::get('/invoice/{id}','UserController@invoiceIndex')->name('user.invoice');
 	Route::get('/download/{id}','PdfController@pdfdownload')->name('pdf.pdfdownload');
 
 	Route::get('/orderDetails/{id}','UserController@customerOrder')->name('user.customerOrder');
 	Route::get('/todayOrder','User\ProfileController@todayOrder')->name('user.todayOrder');
 	Route::get('/orderHistory','User\ProfileController@orderHistory')->name('user.orderHistory');
+	Route::get('/extraOrder','User\ProfileController@extraOrder')->name('user.extraOrder');
 	Route::get('/updateProfile','User\ProfileController@updateProfile')->name('user.updateProfile');
 	Route::post('/updateProfile','User\ProfileController@updateProfileUpdate')->name('user.updateProfileUpdate');
 
@@ -182,6 +186,9 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::post('/admin/edit/{id}','AdminController@adminUpdate')->name('adminUpdate');
 
 	Route::get('/admin/home','AdminController@index')->name('admin.index');
+
+	Route::get('/admin/premium/Users','Admin\AllUsersController@premiumUsers')->name('admin.premiumUsers');
+	Route::get('/admin/premium/premiumUsersData','Admin\AllUsersController@premiumUsersData')->name('admin.premiumUsersData');
 
 
 	Route::get('/admin/viewPageIndex','Admin\PageIndexController@viewPageIndex')->name('admin.viewPageIndex');
@@ -286,6 +293,14 @@ Route::group(['middleware'=>['adminSess']],function(){
 	Route::get('/admin/statusdelivered/{id}','Admin\OrderController@statusdelivered')->name('order.statusdelivered');
 	Route::get('/admin/statusreceived/{id}','Admin\OrderController@statusreceived')->name('order.statusreceived');
 	Route::get('/admin/statuscancel/{id}','Admin\OrderController@statuscancel')->name('order.statuscancel');
+
+	Route::get('/admin/adminExtraOrder','Admin\OrderController@adminExtraOrder')->name('order.adminExtraOrder');
+	Route::get('/admin/adminExtraOrderInfo/{id}','Admin\OrderController@adminExtraOrderInfo')->name('order.adminExtraOrderInfo');
+	Route::get('/admin/extra/updateOrderPrice','Admin\OrderController@updateOrderPrice')->name('order.updateOrderPrice');
+
+	Route::get('/admin/extraStatusdelivered/{id}','Admin\OrderController@extraStatusdelivered')->name('order.extraStatusdelivered');
+	Route::get('/admin/extraStatusReceived/{id}','Admin\OrderController@extraStatusReceived')->name('order.extraStatusReceived');
+	Route::get('/admin/extraStatusCancel/{id}','Admin\OrderController@extraStatusCancel')->name('order.extraStatusCancel');
 
 });
 

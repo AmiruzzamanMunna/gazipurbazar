@@ -18,7 +18,7 @@
 
                     <input type="date" name="search" id="" class="form-control col-md-6" value="{{$date}}">
                     @else
-                    <input type="date" name="search" id="" class="form-control col-md-6">
+                    <input type="date" name="search" id="" value="{{date('Y-m-d')}}" class="form-control col-md-6">
                     @endif
                     @if ($name)
 
@@ -37,6 +37,7 @@
 							<th>Sl No</th>
 							<th>Customer Name</th>
 							<th>Mobile</th>
+							<th>Mobile2</th>
 							<th>Address</th>
 							<th>Order Date</th>
 							<th>Status</th>
@@ -47,6 +48,7 @@
 							<td>{{$key+1}}</td>
 							<td>{{$order->name}}</td>
 							<td>{{$order->mobile}}</td>
+							<td>{{$order->mobile2}}</td>
 							<td>{{$order->address}}</td>
 							<td>{{date('h:i:s a d-m-y',strtotime($order->Order_date))}}</td>
 							<td>

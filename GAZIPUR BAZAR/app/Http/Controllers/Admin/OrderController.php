@@ -15,6 +15,7 @@ use App\Product;
 use App\EventIndex;
 use App\ContactUs;
 use App\User;
+use App\Extra;
 use Exception;
 
 class OrderController extends Controller
@@ -214,6 +215,75 @@ class OrderController extends Controller
                 $product->quantity=$product->quantity+$cancelOrder->cart_quantity;
                 $product->save();
             }
+        }
+        return back();
+    }
+    public function adminExtraOrder(Request $request)
+    {
+        $events=EventIndex::all();
+        $admins=Admin::all();
+        $orders=Extra::leftjoin('tbl_user','tbl_user.id','tbl_extra.tbl_extra_user_id')
+                        ->orderBY('tbl_extra_data','desc')
+                        ->paginate(10);
+       
+        return view('Admin.extraorder')
+            ->with('events',$events)
+            ->with('admins',$admins)
+            ->with('orders',$orders);
+    }
+    public function adminExtraOrderInfo(Request $request,$id)
+    {
+
+        
+        $events=EventIndex::all();
+        $admins=Admin::all();
+        $orders=Extra::leftjoin('tbl_user','tbl_user.id','tbl_extra.tbl_extra_user_id')
+                        ->where('tbl_extra_id',$id)
+                        ->get();
+       
+        return view('Admin.extraorderinfo')
+            ->with('events',$events)
+            ->with('admins',$admins)
+            ->with('id',$id)
+            ->with('orders',$orders);
+    }
+    public function updateOrderPrice(Request $request)
+    {
+        $id=$request->id;
+        $amount=$request->amount;
+        $data=Extra::where('tbl_extra_id',$id)->first();
+        $data->tbl_extra_price=$data->tbl_extra_quantity*$amount;
+        $data->save();
+
+        return response()->json(array('status'=>'ok'));
+    }
+    public function extraStatusdelivered(Request $request,$id)
+    {
+        $orders=Extra::where('tbl_extra_id',$id)->first();
+        if($orders){
+            $orders->tbl_extra_status=2;
+            // dd($orders);
+            $orders->save();
+        }
+        return back();
+    }
+    public function extraStatusReceived(Request $request,$id)
+    {
+        $orders=Extra::where('tbl_extra_id',$id)->first();
+        if($orders){
+            $orders->tbl_extra_status=3;
+            // dd($orders);
+            $orders->save();
+        }
+        return back();
+    }
+    public function extraStatusCancel(Request $request,$id)
+    {
+        $orders=Extra::where('tbl_extra_id',$id)->first();
+        if($orders){
+            $orders->tbl_extra_status=4;
+            // dd($orders);
+            $orders->save();
         }
         return back();
     }

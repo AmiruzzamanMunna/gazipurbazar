@@ -117,7 +117,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('user.orderHistory')}}">Order History</a>
                                         </li>
-                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('user.extraOrder')}}">Extra Item Order</a>
+                                        </li>
                                         
                                     </ul>
                                 </div>
